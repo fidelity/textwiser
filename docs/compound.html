@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Compound Embedding &mdash; TextWiser 1.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Fine-Tuning for Downstream Tasks" href="fine_tuning.html" />
+    <link rel="prev" title="Transformations" href="transformations.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TextWiser
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Usage Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations.html">Transformations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compound Embedding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-context-free-grammar-of-embeddings">A Context-Free Grammar of Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-compound-schema">Example Compound Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fine_tuning.html">Fine-Tuning for Downstream Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">TextWiser Public API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TextWiser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Compound Embedding</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/compound.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="compound-embedding">
+<span id="compound"></span><h1>Compound Embedding<a class="headerlink" href="#compound-embedding" title="Permalink to this headline">¶</a></h1>
+<p>A unique research contribution of TextWiser lies in its novel approach in creating embeddings from components, called the Compound Embedding. This method allows forming arbitrarily complex embeddings, thanks to a context-free grammar that defines a formal language for valid text featurization.</p>
+<p>The compound embedding is instantiated using a schema which applies two main production rules:</p>
+<ul class="simple">
+<li><p><strong>Transform Operation:</strong> This operator defines a list of operations. The first of these operations should be an <code class="docutils literal notranslate"><span class="pre">Embedding</span></code> while the rest should be <code class="docutils literal notranslate"><span class="pre">Transformation(s)</span></code>. The idea is that the <code class="docutils literal notranslate"><span class="pre">Embedding</span></code> s have access to raw text and turn them into vectors, and therefore the following <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> s need to operate on vectors. In PyTorch terms, this is equivalent to using <code class="docutils literal notranslate"><span class="pre">nn.Sequential</span></code>.</p></li>
+<li><p><strong>Concatenation Operator:</strong> This operator defines a concatenation of multiple embedding vectors. This can be done both at word and sentence level. In PyTorch terms, this is equivalent to using <code class="docutils literal notranslate"><span class="pre">torch.cat</span></code>.</p></li>
+</ul>
+<p>More formally, the compound schemas are defined by the following <a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar">context-free grammar</a>:</p>
+<div class="section" id="a-context-free-grammar-of-embeddings">
+<span id="cfg"></span><h2>A Context-Free Grammar of Embeddings<a class="headerlink" href="#a-context-free-grammar-of-embeddings" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>start → option | merge
+
+merge → &quot;{&quot; TRANSFORM &quot;:&quot; &quot;[&quot; start &quot;,&quot; transform_list &quot;]&quot; &quot;}&quot;
+      | &quot;{&quot; CONCAT &quot;:&quot; &quot;[&quot; concat_list &quot;]&quot; &quot;}&quot;
+
+transform_list → transform_start | transform_start &quot;,&quot; transform_list
+
+concat_list → start | start &quot;,&quot; concat_list
+
+transform_start → transform_option | &quot;[&quot; transform_option &quot;,&quot; dict &quot;]&quot;
+
+option → embed_option | &quot;[&quot; embed_option &quot;,&quot; dict &quot;]&quot;
+
+TRANSFORM → &quot;transform&quot;
+CONCAT → &quot;concat&quot;
+
+embed_option → BOW | DOC2VEC | TFIDF | USE | WORD | word_option
+
+BOW → &quot;bow&quot;
+DOC2VEC → &quot;doc2vec&quot;
+TFIDF → &quot;tfidf&quot;
+USE → &quot;use&quot;
+WORD → &quot;word&quot;
+
+word_option → FLAIR | CHAR | WORD2VEC | ELMO | BERT | GPT | GPT2 | TRANSFORMERXL | XLNET | XLM | ROBERTA
+
+FLAIR → &quot;flair&quot;
+CHAR → &quot;char&quot;
+WORD2VEC → &quot;word2vec&quot;
+ELMO → &quot;elmo&quot;
+BERT → &quot;bert&quot;
+GPT → &quot;gpt&quot;
+GPT2 → &quot;gpt2&quot;
+TRANSFORMERXL → &quot;transformerXL&quot;
+XLNET → &quot;xlnet&quot;
+XLM → &quot;xlm&quot;
+ROBERTA → &quot;roberta&quot;
+
+transform_option → LDA | NMF | POOL | SVD | UMAP
+
+LDA → &quot;lda&quot;
+NMF → &quot;nmf&quot;
+POOL → &quot;pool&quot;
+SVD → &quot;svd&quot;
+UMAP → &quot;umap&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-compound-schema">
+<h2>Example Compound Schema<a class="headerlink" href="#example-compound-schema" title="Permalink to this headline">¶</a></h2>
+<p>Consider a compound embedding that achieves the following:
+* creates a <code class="docutils literal notranslate"><span class="pre">word2vec</span></code> embedding which is then <code class="docutils literal notranslate"><span class="pre">max</span></code> pooled to document level
+* creates a <code class="docutils literal notranslate"><span class="pre">flair</span></code> embedding  which is then <code class="docutils literal notranslate"><span class="pre">mean</span></code> pooled to document level
+* creates a <code class="docutils literal notranslate"><span class="pre">tfidf</span></code> embedding reduced in dimensions using <code class="docutils literal notranslate"><span class="pre">nmf</span></code>
+* concatenates these three embeddings together
+* decompose the concatenation via <code class="docutils literal notranslate"><span class="pre">svd</span></code></p>
+<p>The <a class="reference external" href="https://google.com/tree/master/notebooks/schema.json">example schema</a> exactly captures this embedding:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">example_schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;transform&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;concat&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;transform&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">[</span><span class="s2">&quot;word2vec&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;pretrained&quot;</span><span class="p">:</span> <span class="s2">&quot;en&quot;</span><span class="p">}],</span>
+                        <span class="s2">&quot;pool&quot;</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;transform&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">[</span><span class="s2">&quot;flair&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;pretrained&quot;</span><span class="p">:</span> <span class="s2">&quot;news-forward-fast&quot;</span><span class="p">}],</span>
+                        <span class="p">[</span><span class="s2">&quot;pool&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;pool_option&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">}]</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;transform&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s2">&quot;tfidf&quot;</span><span class="p">,</span>
+                        <span class="p">[</span><span class="s2">&quot;nmf&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&quot;n_components&quot;</span><span class="p">:</span> <span class="mi">30</span> <span class="p">}]</span>
+                    <span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;svd&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Model: Compound</span>
+<span class="n">emb</span> <span class="o">=</span> <span class="n">TextWiser</span><span class="p">(</span><span class="n">Embedding</span><span class="o">.</span><span class="n">Compound</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">example_schema</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>See the <a class="reference external" href="https://google.com/tree/master/notebooks/basic_usage_example.ipynb">usage example</a> for a runnable notebook with compound embedding.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fine_tuning.html" class="btn btn-neutral float-right" title="Fine-Tuning for Downstream Tasks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="transformations.html" class="btn btn-neutral float-left" title="Transformations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, FMR LLC
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

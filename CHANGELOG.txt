@@ -1,0 +1,71 @@
+=====================
+TextWiser CHANGELOG
+=====================
+
+-------------------------------------------------------------------------------
+Mar 12, 2020 1.2.1
+-------------------------------------------------------------------------------
+
+minor:
+- Fix transformers model initialization for newer versions of transformers
+
+-------------------------------------------------------------------------------
+Feb 13, 2020 1.2.0
+-------------------------------------------------------------------------------
+major:
+- Update Universal Sentence Encoder
+  - Now works with newer versions
+  - Default version is now v5
+- Add bytepair embeddings
+- Add ALBERT embeddings
+
+minor:
+- Add explicit fit_transform method to Compound embeddings to make them faster
+
+-------------------------------------------------------------------------------
+Nov 13, 2019 1.1.1
+-------------------------------------------------------------------------------
+
+minor:
+- Fix running transformers models on a GPU
+- Fix modification of input schema object for Compound embeddings
+
+-------------------------------------------------------------------------------
+Oct 24, 2019 1.1.0
+-------------------------------------------------------------------------------
+
+major:
+- All transformer-based models are powered by the transformers library
+  - This enables fine-tuning for transformer models!
+  - There isn't a subword to word level aggregation, everything is aggregated at doc level
+  - The models output the last layer by default
+  - The scalar mix parameter is discontinued
+- Add DistilBERT and CTRL models
+- Add Sphinx documentation
+- Add LICENSE
+
+minor:
+- More modular word embedding testing
+
+-------------------------------------------------------------------------------
+Oct 3, 2019 1.0.1
+-------------------------------------------------------------------------------
+
+major:
+- Data in different structures are only converted to torch tensor if necessary (major speedup for sklearn models!)
+
+minor:
+- Fix word2vec fit behavior to match other trainable models
+- Add explicit fit_transform to TextWiser for faster inference with sklearn models
+
+-------------------------------------------------------------------------------
+Sept 27, 2019 1.0.0
+-------------------------------------------------------------------------------
+
+- Initial release.
+
+-------------------------------------------------------------------------------
+July 29, 2019 0.0.1
+-------------------------------------------------------------------------------
+
+- Development starts. Unstable.

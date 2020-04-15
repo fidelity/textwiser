@@ -1,0 +1,11 @@
+TextWiser
+Copyright 2019 and onwards FMR LLC.
+
+This product includes software developed at
+FMR LLC (https://www.fidelity.com/).
+
+This product relies on the following works (and the dependencies thereof), installed separately:
+- flair | https://github.com/flairNLP/flair | MIT License
+- scikit-learn | https://github.com/scikit-learn/scikit-learn | 3-Clause BSD License
+- torch | https://github.com/pytorch/pytorch | 3-Clause BSD License
+- transformers | https://github.com/huggingface/transformers | Apache 2.0 License

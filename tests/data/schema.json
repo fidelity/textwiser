@@ -1,0 +1,21 @@
+{
+    "transform": [
+        {
+            "concat": [
+                {
+                    "transform": [
+                        ["word", {"word_option": "word2vec", "pretrained": "en-turian"}],
+                        ["pool", {"pool_option": "max"}]
+                    ]
+                },
+                {
+                    "transform": [
+                        "tfidf",
+                        ["nmf", { "n_components": 30 }]
+                    ]
+                }
+            ]
+        },
+        ["svd", {"n_components": 3}]
+    ]
+}

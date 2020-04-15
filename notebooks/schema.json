@@ -1,0 +1,27 @@
+{
+    "transform": [
+        {
+            "concat": [
+                {
+                    "transform": [
+                        ["word2vec", {"pretrained": "en"}],
+                        "pool"
+                    ]
+                },
+                {
+                    "transform": [
+                        ["flair", {"pretrained": "news-forward-fast"}],
+                        ["pool", {"pool_option": "mean"}]
+                    ]
+                },
+                {
+                    "transform": [
+                        "tfidf",
+                        ["nmf", { "n_components": 30 }]
+                    ]
+                }
+            ]
+        },
+        "svd"
+    ]
+}
