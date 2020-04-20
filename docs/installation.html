@@ -200,7 +200,7 @@ add a flag to <code class="docutils literal notranslate"><span class="pre">pip</
 <div class="section" id="wheel-package">
 <h2>Wheel Package<a class="headerlink" href="#wheel-package" title="Permalink to this headline">¶</a></h2>
 <p>The library is provided as a wheel package. You can install the library from the wheel package using the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone &lt;repo_path&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/fmr-llc/textwiser
 <span class="nb">cd</span> textwiser
 pip install dist/textwiser-X.X.X-py3-none-any.whl
 </pre></div>
@@ -213,11 +213,11 @@ pip install dist/textwiser-X.X.X-py3-none-any.whl
 <div class="section" id="source-code">
 <h2>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h2>
 <p>Alternatively, you can build a wheel package on your platform from scratch using the source code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">&lt;</span><span class="n">repo_path</span><span class="o">&gt;</span>
-<span class="n">cd</span> <span class="n">textwiser</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">setuptools</span> <span class="n">wheel</span> <span class="c1"># if wheel is not installed</span>
-<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">bdist_wheel</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">dist</span><span class="o">/</span><span class="n">textwiser</span><span class="o">-</span><span class="n">X</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">X</span><span class="o">-</span><span class="n">py3</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="nb">any</span><span class="o">.</span><span class="n">whl</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/fmr-llc/textwiser
+<span class="nb">cd</span> textwiser
+pip install setuptools wheel <span class="c1"># if wheel is not installed</span>
+python setup.py bdist_wheel
+pip install dist/textwiser-X.X.X-py3-none-any.whl
 </pre></div>
 </div>
 </div>

@@ -22,7 +22,7 @@ TextWiser is developed by the Artificial Intelligence Center of Excellence at Fi
 
 Source Code
 ===========
-The source code is hosted on :repo:`git <>`.
+The source code is hosted on :repo:`GitHub <>`.
 
 .. sidebar:: Contents
 

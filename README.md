@@ -89,7 +89,7 @@ Examples can be found under the [notebooks](notebooks) folder.
  
 ## Installation
 TextWiser can be installed from the provided wheel package or by building from source by following the instructions
-in our [documentation](docs/installation.html). 
+in our [documentation](https://fmr-llc.github.io/textwiser/installation.html).
 
 ## Compound Embedding
 A unique research contribution of TextWiser lies in its novel approach in creating embeddings from components, 
@@ -97,18 +97,18 @@ called the Compound Embedding.
 
 This method allows forming arbitrarily complex embeddings, thanks to a 
 context-free grammar that defines a formal language for valid text featurization. You can see the details
-in our [documentation](docs/compound.html) and in the [usage example](notebooks/basic_usage_example.ipynb).
+in our [documentation](https://fmr-llc.github.io/textwiser/compound.html) and in the [usage example](notebooks/basic_usage_example.ipynb).
 
 ## Fine-Tuning for Downstream Tasks
 All Word2Vec and transformer-based embeddings and any embedding followed with an ``svd`` transformation are fine-tunable for downstream tasks. 
 In other words, if you pass the resulting fine-tunable embedding to a PyTorch training method, the features will automatically 
-be trained for your application. You can see the details in our [documentation](docs/fine_tuning.html)
+be trained for your application. You can see the details in our [documentation](https://fmr-llc.github.io/textwiser/fine_tuning.html)
 and in the [usage example](notebooks/finetune_example.ipynb).
 
 ## Tokenization
 In general, text data should be **whitespace-tokenized** before being fed into TextWiser. 
 Customized tokenization is also supported as described in more detail 
-in our [documentation](docs/fine_tuning.html)
+in our [documentation](https://fmr-llc.github.io/textwiser/fine_tuning.html)
 
 ## Support
 
