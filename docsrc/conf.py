@@ -60,8 +60,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 pygments_style = None
 
 # Common links
-extlinks = {'repo': ('https://github.com/fmr-llc/textwiser%s', None),
-            'docs': ('https://fmr-llc.github.io/textwiser%s', None)}
+extlinks = {'repo': ('https://github.com/fidelity/textwiser%s', None),
+            'docs': ('https://fidelity.github.io/textwiser%s', None)}
 
 # -- Options for HTML output -------------------------------------------------
 

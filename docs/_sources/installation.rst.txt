@@ -40,7 +40,7 @@ The library is provided as a wheel package. You can install the library from the
 
 .. code-block:: bash
 
-    git clone https://github.com/fmr-llc/textwiser
+    git clone https://github.com/fidelity/textwiser
     cd textwiser
     pip install dist/textwiser-X.X.X-py3-none-any.whl
 
@@ -53,7 +53,7 @@ Alternatively, you can build a wheel package on your platform from scratch using
 
 .. code-block:: bash
 
-    git clone https://github.com/fmr-llc/textwiser
+    git clone https://github.com/fidelity/textwiser
     cd textwiser
     pip install setuptools wheel # if wheel is not installed
     python setup.py bdist_wheel

@@ -16,7 +16,7 @@ setuptools.setup(
     long_description=long_description,
     version=__version__,
     author="FMR LLC",
-    url="https://github.com/fmr-llc/textwiser",
+    url="https://github.com/fidelity/textwiser",
     packages=setuptools.find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     # install_requires=required,
     python_requires=">=3.6",
@@ -26,6 +26,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     project_urls={
-        "Source": "https://github.com/fmr-llc/textwiser"
+        "Source": "https://github.com/fidelity/textwiser"
     }
 )
