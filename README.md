@@ -112,10 +112,8 @@ in our [documentation](https://fidelity.github.io/textwiser/fine_tuning.html)
 
 ## Support
 
-Please submit bug reports and feature requests as [Issues]().
-
-For additional questions and feedback, please contact us at 
-[textwiser@fmr.com](mailto:textwiser@fmr.com?subject=[Github]%20TextWiser%20Feedback).
+Please submit bug reports and feature requests as [Issues](https://github.com/fidelity/textwiser/issues).
+You can also submit any additional questions or feedback as issues.
 
 ## License
 TextWiser is licensed under the [Apache License 2.0](LICENSE).
