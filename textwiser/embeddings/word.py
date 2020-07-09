@@ -73,6 +73,12 @@ factory = {
     WordOptions.distilbert: transformers_loader,
     WordOptions.ctrl: transformers_loader,
     WordOptions.albert: transformers_loader,
+    WordOptions.t5: transformers_loader,
+    WordOptions.xlm_roberta: transformers_loader,
+    WordOptions.bart: transformers_loader,
+    WordOptions.electra: transformers_loader,
+    WordOptions.dialo_gpt: transformers_loader,
+    WordOptions.longformer: transformers_loader,
 }
 
 pretrained_parameters = {
@@ -90,6 +96,12 @@ pretrained_parameters = {
     WordOptions.distilbert: 'pretrained',
     WordOptions.ctrl: 'pretrained',
     WordOptions.albert: 'pretrained',
+    WordOptions.t5: 'pretrained',
+    WordOptions.xlm_roberta: 'pretrained',
+    WordOptions.bart: 'pretrained',
+    WordOptions.electra: 'pretrained',
+    WordOptions.dialo_gpt: 'pretrained',
+    WordOptions.longformer: 'pretrained',
 }
 
 default_pretrained_options = {
@@ -107,9 +119,13 @@ default_pretrained_options = {
     WordOptions.distilbert: 'distilbert-base-uncased',
     WordOptions.ctrl: 'ctrl',
     WordOptions.albert: 'albert-base-v2',
+    WordOptions.t5: 't5-base',
+    WordOptions.xlm_roberta: 'xlm-roberta-base',
+    WordOptions.bart: 'facebook/bart-base',
+    WordOptions.electra: 'google/electra-base-generator',
+    WordOptions.dialo_gpt: 'microsoft/DialoGPT-small',
+    WordOptions.longformer: 'allenai/longformer-base-4096',
 }
-
-uses_special_tokens = {WordOptions.bert, WordOptions.xlnet, WordOptions.xlm, WordOptions.roberta, WordOptions.albert}
 
 
 def _get_and_init_word_embeddings(word_option: WordOptions, pretrained: str, **params):
@@ -201,9 +217,15 @@ class _WordEmbeddings(BaseFeaturizer):
             elif self.word_option is WordOptions.bytepair:
                 res.append(self.model(self.tokenizer(doc, self.vocab)))
             elif self.word_option.is_from_transformers():
-                input_ids = torch.tensor([self.tokenizer.encode(doc, max_length=self.tokenizer.max_len,
-                                                                add_special_tokens=self.word_option in uses_special_tokens)], device=device)
-                outs = self.model(input_ids)
+                if self.word_option == WordOptions.dialo_gpt:
+                    encoded_inputs = self.tokenizer(doc, truncation=True, max_length=1024, return_tensors="pt")  # The max length for DialoGPT isn't properly configured
+                    outs = self.model(**encoded_inputs)
+                else:
+                    encoded_inputs = self.tokenizer(doc, truncation=True, return_tensors="pt")
+                    if self.word_option == WordOptions.t5:
+                        outs = self.model(**encoded_inputs, decoder_input_ids=encoded_inputs['input_ids'])
+                    else:
+                        outs = self.model(**encoded_inputs)
                 res.append(torch.cat([outs[-1][layer] for layer in self.layers], dim=-1)[0])
             else:
                 sent = Sentence(doc)

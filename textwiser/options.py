@@ -30,6 +30,12 @@ class WordOptions(Enum):
     distilbert = "distilbert"
     ctrl = "ctrl"
     albert = "albert"
+    t5 = "t5"
+    xlm_roberta = "xlm_roberta"
+    bart = "bart"
+    electra = "electra"
+    dialo_gpt = "dialo_gpt"
+    longformer = "longformer"
 
     def is_finetuneable(self):
         """Whether the Word embeddings are fine-tuneable"""
@@ -38,7 +44,8 @@ class WordOptions(Enum):
     def is_from_transformers(self):
         return self in (WordOptions.bert, WordOptions.gpt, WordOptions.gpt2, WordOptions.transformerXL,
                         WordOptions.xlnet, WordOptions.xlm, WordOptions.roberta, WordOptions.distilbert,
-                        WordOptions.ctrl, WordOptions.albert)
+                        WordOptions.ctrl, WordOptions.albert, WordOptions.t5, WordOptions.xlm_roberta,
+                        WordOptions.bart, WordOptions.electra, WordOptions.dialo_gpt, WordOptions.longformer)
 
 
 class PoolOptions(Enum):
