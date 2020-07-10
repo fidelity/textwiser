@@ -332,15 +332,22 @@ class Embedding(NamedTuple):
         layers: Union[int, List[int]]
             The hidden layers to use as the word representation in transformers models.
             Defaults to ``-1``.
+        pool_option: Optional[PoolOptions]
+            The pooling to be done right after the word embedding. This is the same as having a word embedding
+            immediately followed by a pool transformation. Specifying a pool transformation here can be significantly
+            less memory intensive if you're embedding a large dataset at once. If specified, the return value will
+            either be a numpy array or a torch tensor (depending on specified dtype) instead of a list of
+            arrays or tensors. Defaults to ``None``, which means no pooling will be done.
         """
 
         def __init__(self, word_option: WordOptions = WordOptions.word2vec, pretrained: str = Constants.default_model,
                      sparse: bool = False, tokenizer: Optional[Callable[[str], List[str]]] = None,
-                     layers: Union[int, List[int]] = -1, **kwargs):
+                     layers: Union[int, List[int]] = -1, pool_option: Optional[PoolOptions] = None, **kwargs):
             self.word_option = word_option
             self.sparse = sparse
             self.tokenizer = tokenizer
             self.layers = layers
+            self.pool_option = pool_option
             super().__init__(pretrained=pretrained, **kwargs)
 
         def _validate(self, finetune_enabled=False):
@@ -356,6 +363,8 @@ class Embedding(NamedTuple):
                        ValueError("Sparse embeddings only supported with word2vec embeddings"))
             check_true(isinstance(self.layers, int) or all([isinstance(l, int) for l in self.layers]),
                        ValueError("Layers can only be an integer or a list of integers"))
+            check_true(not self.pool_option or isinstance(self.pool_option, PoolOptions),
+                       ValueError("Pooling should either be None or a pool option."))
 
             if self.tokenizer:
                 check_true(self.word_option == WordOptions.word2vec,

@@ -296,3 +296,16 @@ class WordTest(BaseTest):
                 tw.transform(docs)
                 tw.transform(long_doc)
                 print('ok', flush=True)
+
+    def test_inline_pool(self):
+        # Test that pooling in Embedding.Word gives the same result as using pool transformation
+        tw1 = TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained='en-turian'),
+                        Transformation.Pool(pool_option=PoolOptions.max), dtype=torch.float32)
+        tw2 = TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained='en-turian',
+                                       pool_option=PoolOptions.max), dtype=torch.float32)
+        target = tw1.fit_transform(docs)
+        self.assertTrue(torch.allclose(target, tw2.fit_transform(docs)))
+
+        # Test that inline pooling can be done through the schema
+        tw3 = TextWiser(Embedding.Compound(schema=["word", {"word_option": "word2vec", "pretrained": "en-turian", "pool_option": "max"}]), dtype=torch.float32)
+        self.assertTrue(torch.allclose(target, tw3.fit_transform(docs)))

@@ -194,7 +194,7 @@ class TextWiser(BaseFeaturizer):
             [transformation._validate() for transformation in transformations]
 
         # words should be pooled
-        if isinstance(embedding, Embedding.Word) and (
+        if isinstance(embedding, Embedding.Word) and embedding.pool_option is None and (
                 not transformations or
                 not any([isinstance(transformation, Transformation.Pool) for transformation in transformations])):
             warnings.warn("Word embeddings are specified but no pool options are specified. Are you sure you don't want to pool them?", RuntimeWarning)

@@ -2,6 +2,7 @@
 # SPDX-License-Identifer: Apache-2.0
 
 from pathlib import Path
+from typing import Optional
 
 from bpemb import BPEmb
 import flair
@@ -19,7 +20,8 @@ import torch.nn as nn
 from transformers import AutoTokenizer, AutoModel, AutoConfig
 
 from textwiser.base import BaseFeaturizer
-from textwiser.options import WordOptions
+from textwiser.options import WordOptions, PoolOptions
+from textwiser.transformations.pool import pool
 from textwiser.utils import device, split_tokenizer, Constants
 
 
@@ -144,13 +146,14 @@ def _get_and_init_word_embeddings(word_option: WordOptions, pretrained: str, **p
 
 class _WordEmbeddings(BaseFeaturizer):
     def __init__(self, word_option: WordOptions, pretrained=Constants.default_model, sparse=True, tokenizer=None,
-                 layers=-1, **kwargs):
+                 layers=-1, pool_option: Optional[PoolOptions] = None, **kwargs):
         super(_WordEmbeddings, self).__init__()
         self.word_option = word_option
         self.pretrained = pretrained
         self.sparse = sparse
         self.tokenizer = tokenizer if tokenizer else split_tokenizer
         self.layers = [layers] if isinstance(layers, int) else layers
+        self.pool_option = pool_option
         self.init_args = kwargs
         self.model = None
 
@@ -210,12 +213,12 @@ class _WordEmbeddings(BaseFeaturizer):
                 raise NotImplementedError("A {} model cannot be trained from scratch.".format(self.word_option))
 
     def forward(self, x):
-        res = []
+        all_results = []
         for i, doc in enumerate(x):
             if self.word_option is WordOptions.word2vec:
-                res.append(self.model(self._match_words(doc)))
+                res = self.model(self._match_words(doc))
             elif self.word_option is WordOptions.bytepair:
-                res.append(self.model(self.tokenizer(doc, self.vocab)))
+                res = self.model(self.tokenizer(doc, self.vocab))
             elif self.word_option.is_from_transformers():
                 if self.word_option == WordOptions.dialo_gpt:
                     encoded_inputs = self.tokenizer(doc, truncation=True, max_length=1024, return_tensors="pt")  # The max length for DialoGPT isn't properly configured
@@ -226,9 +229,14 @@ class _WordEmbeddings(BaseFeaturizer):
                         outs = self.model(**encoded_inputs, decoder_input_ids=encoded_inputs['input_ids'])
                     else:
                         outs = self.model(**encoded_inputs)
-                res.append(torch.cat([outs[-1][layer] for layer in self.layers], dim=-1)[0])
+                res = torch.cat([outs[-1][layer] for layer in self.layers], dim=-1)[0]
             else:
                 sent = Sentence(doc)
                 self.model.embed(sent)
-                res.append(torch.stack([token.embedding for token in sent]).to(device))
-        return res
+                res = torch.stack([token.embedding for token in sent]).to(device)
+            if self.pool_option:
+                res = pool(res, self.pool_option)
+            all_results.append(res)
+        if self.pool_option:
+            all_results = torch.stack(all_results, dim=0)
+        return all_results
