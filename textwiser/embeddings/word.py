@@ -222,9 +222,11 @@ class _WordEmbeddings(BaseFeaturizer):
             elif self.word_option.is_from_transformers():
                 if self.word_option == WordOptions.dialo_gpt:
                     encoded_inputs = self.tokenizer(doc, truncation=True, max_length=1024, return_tensors="pt")  # The max length for DialoGPT isn't properly configured
+                    encoded_inputs = {key: tensor_val.to(device) for key, tensor_val in encoded_inputs.items()}
                     outs = self.model(**encoded_inputs)
                 else:
                     encoded_inputs = self.tokenizer(doc, truncation=True, return_tensors="pt")
+                    encoded_inputs = {key: tensor_val.to(device) for key, tensor_val in encoded_inputs.items()}
                     if self.word_option == WordOptions.t5:
                         outs = self.model(**encoded_inputs, decoder_input_ids=encoded_inputs['input_ids'])
                     else:
