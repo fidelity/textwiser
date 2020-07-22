@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TextWiser Public API &mdash; TextWiser 1.2.1 documentation</title>
+  <title>TextWiser Public API &mdash; TextWiser 1.3.0 documentation</title>
   
 
   
@@ -168,10 +168,10 @@
 <dd class="field-odd"><p>FMR LLC</p>
 </dd>
 <dt class="field-even">Email</dt>
-<dd class="field-even"><p><a class="reference external" href="mailto:textwiser&#37;&#52;&#48;fmr&#46;com">textwiser<span>&#64;</span>fmr<span>&#46;</span>com</a></p>
+<dd class="field-even"><p><a class="reference external" href="mailto:opensource&#37;&#52;&#48;fidelity&#46;com">opensource<span>&#64;</span>fidelity<span>&#46;</span>com</a></p>
 </dd>
 <dt class="field-odd">Version</dt>
-<dd class="field-odd"><p>1.2.1 of Mar 12, 2020</p>
+<dd class="field-odd"><p>1.3.0 of Jul 22, 2020</p>
 </dd>
 </dl>
 <p>This module defines the public interface of the
@@ -401,7 +401,7 @@ there are no parameters that can be passed in.</p>
 
 <dl class="class">
 <dt id="textwiser.Embedding.Word">
-<em class="property">class </em><code class="sig-name descname">Word</code><span class="sig-paren">(</span><em class="sig-param">word_option: textwiser.options.WordOptions = &lt;WordOptions.word2vec: 'word2vec'&gt;</em>, <em class="sig-param">pretrained: str = 'default'</em>, <em class="sig-param">sparse: bool = False</em>, <em class="sig-param">tokenizer: Optional[Callable[str</em>, <em class="sig-param">List[str]]] = None</em>, <em class="sig-param">layers: Union[int</em>, <em class="sig-param">List[int]] = -1</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Word" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-name descname">Word</code><span class="sig-paren">(</span><em class="sig-param">word_option: textwiser.options.WordOptions = &lt;WordOptions.word2vec: 'word2vec'&gt;</em>, <em class="sig-param">pretrained: str = 'default'</em>, <em class="sig-param">sparse: bool = False</em>, <em class="sig-param">tokenizer: Optional[Callable[str</em>, <em class="sig-param">List[str]]] = None</em>, <em class="sig-param">layers: Union[int</em>, <em class="sig-param">List[int]] = -1</em>, <em class="sig-param">pool_option: Optional[textwiser.options.PoolOptions] = None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Word" title="Permalink to this definition">¶</a></dt>
 <dd><p>Word embeddings.</p>
 <p>These include non-contextual Word2Vec models, such as the original skip-gram model,
 and the GloVe embeddings, and also contextual embeddings, such as BERT and ELMo.
@@ -469,6 +469,21 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">-1</spa
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>Union[int, List[int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="textwiser.Embedding.Word.pool_option">
+<code class="sig-name descname">pool_option</code><a class="headerlink" href="#textwiser.Embedding.Word.pool_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pooling to be done right after the word embedding. This is the same as having a word embedding
+immediately followed by a pool transformation. Specifying a pool transformation here can be significantly
+less memory intensive if you’re embedding a large dataset at once. If specified, the return value will
+either be a numpy array or a torch tensor (depending on specified dtype) instead of a list of
+arrays or tensors. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>, which means no pooling will be done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="#textwiser.PoolOptions" title="textwiser.PoolOptions">PoolOptions</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -596,6 +611,11 @@ Supports any attributes that umap.UMAP may need.</p>
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="textwiser.WordOptions.bart">
+<code class="sig-name descname">bart</code><em class="property"> = 'bart'</em><a class="headerlink" href="#textwiser.WordOptions.bart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="textwiser.WordOptions.bert">
 <code class="sig-name descname">bert</code><em class="property"> = 'bert'</em><a class="headerlink" href="#textwiser.WordOptions.bert" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -616,8 +636,18 @@ Supports any attributes that umap.UMAP may need.</p>
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="textwiser.WordOptions.dialo_gpt">
+<code class="sig-name descname">dialo_gpt</code><em class="property"> = 'dialo_gpt'</em><a class="headerlink" href="#textwiser.WordOptions.dialo_gpt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="textwiser.WordOptions.distilbert">
 <code class="sig-name descname">distilbert</code><em class="property"> = 'distilbert'</em><a class="headerlink" href="#textwiser.WordOptions.distilbert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="textwiser.WordOptions.electra">
+<code class="sig-name descname">electra</code><em class="property"> = 'electra'</em><a class="headerlink" href="#textwiser.WordOptions.electra" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -652,8 +682,18 @@ Supports any attributes that umap.UMAP may need.</p>
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="textwiser.WordOptions.longformer">
+<code class="sig-name descname">longformer</code><em class="property"> = 'longformer'</em><a class="headerlink" href="#textwiser.WordOptions.longformer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="textwiser.WordOptions.roberta">
 <code class="sig-name descname">roberta</code><em class="property"> = 'roberta'</em><a class="headerlink" href="#textwiser.WordOptions.roberta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="textwiser.WordOptions.t5">
+<code class="sig-name descname">t5</code><em class="property"> = 't5'</em><a class="headerlink" href="#textwiser.WordOptions.t5" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -669,6 +709,11 @@ Supports any attributes that umap.UMAP may need.</p>
 <dl class="attribute">
 <dt id="textwiser.WordOptions.xlm">
 <code class="sig-name descname">xlm</code><em class="property"> = 'xlm'</em><a class="headerlink" href="#textwiser.WordOptions.xlm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="textwiser.WordOptions.xlm_roberta">
+<code class="sig-name descname">xlm_roberta</code><em class="property"> = 'xlm_roberta'</em><a class="headerlink" href="#textwiser.WordOptions.xlm_roberta" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
