@@ -44,7 +44,7 @@ A Context-Free Grammar of Embeddings
     USE → "use"
     WORD → "word"
 
-    word_option → FLAIR | CHAR | WORD2VEC | ELMO | BERT | GPT | GPT2 | TRANSFORMERXL | XLNET | XLM | ROBERTA
+    word_option → FLAIR | CHAR | WORD2VEC | ELMO | BERT | GPT | GPT2 | TRANSFORMERXL | XLNET | XLM | ROBERTA | DISTILBERT | CTRL | ALBERT | T5 | XLM_ROBERTA | BART | ELECTRA | DIALO_GPT | LONGFORMER
 
     FLAIR → "flair"
     CHAR → "char"
@@ -57,6 +57,15 @@ A Context-Free Grammar of Embeddings
     XLNET → "xlnet"
     XLM → "xlm"
     ROBERTA → "roberta"
+    DISTILBERT → "distilbert"
+    CTRL → "ctrl"
+    ALBERT → "albert"
+    T5 → "t5"
+    XLM_ROBERTA → "xlm_roberta"
+    BART → "bart"
+    ELECTRA → "electra"
+    DIALO_GPT → "dialo_gpt"
+    LONGFORMER → "longformer"
 
     transform_option → LDA | NMF | POOL | SVD | UMAP
 

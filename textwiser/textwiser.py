@@ -10,7 +10,7 @@ import torch
 from textwiser.base import BaseFeaturizer
 from textwiser.factory import get_standalone_document_embeddings, _Sequential
 from textwiser.options import _ArgBase, Embedding, Embedding_Type, Transformation, Transformation_Type
-from textwiser.utils import check_true, convert, device, OutputType
+from textwiser.utils import check_true, check_false, convert, device, OutputType
 
 
 class TextWiser(BaseFeaturizer):
@@ -194,10 +194,16 @@ class TextWiser(BaseFeaturizer):
             [transformation._validate() for transformation in transformations]
 
         # words should be pooled
-        if isinstance(embedding, Embedding.Word) and (
+        if isinstance(embedding, Embedding.Word) and embedding.inline_pool_option is None and (
                 not transformations or
                 not any([isinstance(transformation, Transformation.Pool) for transformation in transformations])):
             warnings.warn("Word embeddings are specified but no pool options are specified. Are you sure you don't want to pool them?", RuntimeWarning)
+
+        # words shouldn't be double-pooled
+        check_false(isinstance(embedding, Embedding.Word) and embedding.inline_pool_option is not None and transformations
+                    and any([isinstance(transformation, Transformation.Pool) for transformation in transformations]),
+                    ValueError("You cannot specify both `inline_pool_option` and `Pool` transformation for the same"
+                               " embedding at the same time. Please pick one!"))
 
         # dtype
         check_true(isinstance(dtype, torch.dtype) or issubclass(dtype, np.generic),

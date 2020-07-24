@@ -86,6 +86,12 @@ class WordTest(BaseTest):
             WordOptions.distilbert: 768,
             WordOptions.ctrl: 1280,
             WordOptions.albert: 768,
+            WordOptions.t5: 768,
+            WordOptions.xlm_roberta: 768,
+            WordOptions.bart: 768,
+            WordOptions.electra: 256,
+            WordOptions.dialo_gpt: 768,
+            WordOptions.longformer: 768,
         }
         weights = {
             WordOptions.bert: lambda x: x._imp[0].model.embeddings.word_embeddings.weight,
@@ -98,6 +104,12 @@ class WordTest(BaseTest):
             WordOptions.distilbert: lambda x: x._imp[0].model.embeddings.word_embeddings.weight,
             WordOptions.ctrl: lambda x: x._imp[0].model.w.weight,
             WordOptions.albert: lambda x: x._imp[0].model.embeddings.word_embeddings.weight,
+            WordOptions.t5: lambda x: x._imp[0].model.shared.weight,
+            WordOptions.xlm_roberta: lambda x: x._imp[0].model.embeddings.word_embeddings.weight,
+            WordOptions.bart: lambda x: x._imp[0].model.shared.weight,
+            WordOptions.electra: lambda x: x._imp[0].model.embeddings.word_embeddings.weight,
+            WordOptions.dialo_gpt: lambda x: x._imp[0].model.wte.weight,
+            WordOptions.longformer: lambda x: x._imp[0].model.embeddings.word_embeddings.weight,
         }
         print()
         for o in WordOptions:
@@ -284,3 +296,22 @@ class WordTest(BaseTest):
                 tw.transform(docs)
                 tw.transform(long_doc)
                 print('ok', flush=True)
+
+    def test_inline_pool(self):
+        # Test that pooling in Embedding.Word gives the same result as using pool transformation
+        tw1 = TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained='en-turian'),
+                        Transformation.Pool(pool_option=PoolOptions.max), dtype=torch.float32)
+        tw2 = TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained='en-turian',
+                                       inline_pool_option=PoolOptions.max), dtype=torch.float32)
+        target = tw1.fit_transform(docs)
+        self.assertTrue(torch.allclose(target, tw2.fit_transform(docs)))
+
+        # Test that inline pooling can be done through the schema
+        tw3 = TextWiser(Embedding.Compound(schema=["word", {"word_option": "word2vec", "pretrained": "en-turian", "inline_pool_option": "max"}]), dtype=torch.float32)
+        self.assertTrue(torch.allclose(target, tw3.fit_transform(docs)))
+
+        # Test that double pooling raises an error
+        with self.assertRaises(ValueError):
+            TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained='en-turian',
+                                     inline_pool_option=PoolOptions.max),
+                      Transformation.Pool(pool_option=PoolOptions.max), dtype=torch.float32)

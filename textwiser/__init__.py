@@ -5,8 +5,8 @@
 
 """
 :Author: FMR LLC
-:Email: textwiser@fmr.com
-:Version: 1.2.1 of Mar 12, 2020
+:Email: opensource@fidelity.com
+:Version: 1.3.0 of Jul 22, 2020
 
 This module defines the public interface of the
 **TextWiser Library** providing access to the following modules:
@@ -20,7 +20,7 @@ This module defines the public interface of the
 """
 
 __author__ = "FMR LLC"
-__email__ = "textwiser@fmr.com"
+__email__ = "opensource@fidelity.com"
 __copyright__ = "Copyright (C) 2019, FMR LLC"
 
 from textwiser.options import Embedding, PoolOptions, Transformation, WordOptions

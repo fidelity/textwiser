@@ -73,6 +73,12 @@ vecs = emb.fit_transform(documents)
 | Word Embedding: [DistilBERT](https://github.com/huggingface/transformers#model-architectures) | Supported by these [pretrained embeddings](https://huggingface.co/transformers/pretrained_models.html) <br> Defaults to ``distilbert-base-uncased`` |
 | Word Embedding: [CTRL](https://github.com/huggingface/transformers#model-architectures) | Supported by these [pretrained embeddings](https://huggingface.co/transformers/pretrained_models.html) <br> Defaults to ``ctrl`` |
 | Word Embedding: [ALBERT](https://github.com/huggingface/transformers#model-architectures) | Supported by these [pretrained embeddings](https://huggingface.co/transformers/pretrained_models.html) <br> Defaults to ``albert-base-v2`` |
+| Word Embedding: [T5](https://github.com/huggingface/transformers#model-architectures) | Supported by these [pretrained embeddings](https://huggingface.co/transformers/pretrained_models.html) <br> Defaults to ``t5-base`` |
+| Word Embedding: [XLM-RoBERTa](https://github.com/huggingface/transformers#model-architectures) | Supported by these [pretrained embeddings](https://huggingface.co/transformers/pretrained_models.html) <br> Defaults to ``xlm-roberta-base`` |
+| Word Embedding: [BART](https://github.com/huggingface/transformers#model-architectures) | Supported by these [pretrained embeddings](https://huggingface.co/transformers/pretrained_models.html) <br> Defaults to ``facebook/bart-base`` |
+| Word Embedding: [ELECTRA](https://github.com/huggingface/transformers#model-architectures) | Supported by these [pretrained embeddings](https://huggingface.co/transformers/pretrained_models.html) <br> Defaults to ``google/electra-base-generator`` |
+| Word Embedding: [DialoGPT](https://github.com/huggingface/transformers#model-architectures) | Supported by these [pretrained embeddings](https://huggingface.co/transformers/pretrained_models.html) <br> Defaults to ``microsoft/DialoGPT-small`` |
+| Word Embedding: [Longformer](https://github.com/huggingface/transformers#model-architectures) | Supported by these [pretrained embeddings](https://huggingface.co/transformers/pretrained_models.html) <br> Defaults to ``allenai/longformer-base-4096`` |
 
 ### Available Transformations
 
@@ -112,10 +118,8 @@ in our [documentation](https://fidelity.github.io/textwiser/fine_tuning.html)
 
 ## Support
 
-Please submit bug reports and feature requests as [Issues]().
-
-For additional questions and feedback, please contact us at 
-[textwiser@fmr.com](mailto:textwiser@fmr.com?subject=[Github]%20TextWiser%20Feedback).
+Please submit bug reports and feature requests as [Issues](https://github.com/fidelity/textwiser/issues).
+You can also submit any additional questions or feedback as issues.
 
 ## License
 TextWiser is licensed under the [Apache License 2.0](LICENSE).

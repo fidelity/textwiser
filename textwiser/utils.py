@@ -4,7 +4,6 @@
 
 """
 :Author: FMR LLC
-:Email: textwiser@fmr.com
 
 This module provides a number of constants and helper functions.
 """

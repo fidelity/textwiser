@@ -50,6 +50,18 @@ Embeddings
     | Defaults to ``ctrl``"
     "Word Embedding: `ALBERT <https://github.com/huggingface/transformers#model-architectures>`_", "| Supported by these `pretrained embeddings <https://huggingface.co/transformers/pretrained_models.html>`_
     | Defaults to ``albert-base-v2``"
+    "Word Embedding: `T5 <https://github.com/huggingface/transformers#model-architectures>`_", "| Supported by these `pretrained embeddings <https://huggingface.co/transformers/pretrained_models.html>`_
+    | Defaults to ``t5-base``"
+    "Word Embedding: `XLM-RoBERTa <https://github.com/huggingface/transformers#model-architectures>`_", "| Supported by these `pretrained embeddings <https://huggingface.co/transformers/pretrained_models.html>`_
+    | Defaults to ``xlm-roberta-base``"
+    "Word Embedding: `BART <https://github.com/huggingface/transformers#model-architectures>`_", "| Supported by these `pretrained embeddings <https://huggingface.co/transformers/pretrained_models.html>`_
+    | Defaults to ``facebook/bart-base``"
+    "Word Embedding: `ELECTRA <https://github.com/huggingface/transformers#model-architectures>`_", "| Supported by these `pretrained embeddings <https://huggingface.co/transformers/pretrained_models.html>`_
+    | Defaults to ``google/electra-base-generator``"
+    "Word Embedding: `DialoGPT <https://github.com/huggingface/transformers#model-architectures>`_", "| Supported by these `pretrained embeddings <https://huggingface.co/transformers/pretrained_models.html>`_
+    | Defaults to ``microsoft/DialoGPT-small``"
+    "Word Embedding: `Longformer <https://github.com/huggingface/transformers#model-architectures>`_", "| Supported by these `pretrained embeddings <https://huggingface.co/transformers/pretrained_models.html>`_
+    | Defaults to ``allenai/longformer-base-4096``"
 
 Tokenization
 ^^^^^^^^^^^^

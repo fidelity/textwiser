@@ -30,6 +30,12 @@ class WordOptions(Enum):
     distilbert = "distilbert"
     ctrl = "ctrl"
     albert = "albert"
+    t5 = "t5"
+    xlm_roberta = "xlm_roberta"
+    bart = "bart"
+    electra = "electra"
+    dialo_gpt = "dialo_gpt"
+    longformer = "longformer"
 
     def is_finetuneable(self):
         """Whether the Word embeddings are fine-tuneable"""
@@ -38,7 +44,8 @@ class WordOptions(Enum):
     def is_from_transformers(self):
         return self in (WordOptions.bert, WordOptions.gpt, WordOptions.gpt2, WordOptions.transformerXL,
                         WordOptions.xlnet, WordOptions.xlm, WordOptions.roberta, WordOptions.distilbert,
-                        WordOptions.ctrl, WordOptions.albert)
+                        WordOptions.ctrl, WordOptions.albert, WordOptions.t5, WordOptions.xlm_roberta,
+                        WordOptions.bart, WordOptions.electra, WordOptions.dialo_gpt, WordOptions.longformer)
 
 
 class PoolOptions(Enum):
@@ -325,15 +332,26 @@ class Embedding(NamedTuple):
         layers: Union[int, List[int]]
             The hidden layers to use as the word representation in transformers models.
             Defaults to ``-1``.
+        inline_pool_option: Optional[PoolOptions]
+            The pooling to be done right after the word embedding for each document (``inline``). This is the same as
+            having a word embedding immediately followed by a pool transformation.
+
+            Specifying a pool transformation here can be significantly less memory intensive if you're embedding a large
+            dataset at once. If specified, the return value will either be a numpy array or a torch tensor (depending on
+            specified dtype) instead of a list of arrays or tensors. Specifying both ``inline_pool_option`` and a
+            following ``Transformation.Pool`` for a single Word embedding will result in an error.
+
+            Defaults to ``None``, which means no pooling will be done.
         """
 
         def __init__(self, word_option: WordOptions = WordOptions.word2vec, pretrained: str = Constants.default_model,
                      sparse: bool = False, tokenizer: Optional[Callable[[str], List[str]]] = None,
-                     layers: Union[int, List[int]] = -1, **kwargs):
+                     layers: Union[int, List[int]] = -1, inline_pool_option: Optional[PoolOptions] = None, **kwargs):
             self.word_option = word_option
             self.sparse = sparse
             self.tokenizer = tokenizer
             self.layers = layers
+            self.inline_pool_option = inline_pool_option
             super().__init__(pretrained=pretrained, **kwargs)
 
         def _validate(self, finetune_enabled=False):
@@ -349,6 +367,8 @@ class Embedding(NamedTuple):
                        ValueError("Sparse embeddings only supported with word2vec embeddings"))
             check_true(isinstance(self.layers, int) or all([isinstance(l, int) for l in self.layers]),
                        ValueError("Layers can only be an integer or a list of integers"))
+            check_true(not self.inline_pool_option or isinstance(self.inline_pool_option, PoolOptions),
+                       ValueError("Inline pooling should either be None or a pool option."))
 
             if self.tokenizer:
                 check_true(self.word_option == WordOptions.word2vec,
@@ -427,7 +447,8 @@ class Transformation(NamedTuple):
     class Pool(_ArgBase):
         """Pool Transformation.
 
-        Pools a list of word embeddings into a single embedding.
+        Pools a list of word embeddings into a single embedding. Should not be specified if ``inline_pool_option``
+        is specified for the corresponding word embedding.
 
         Attributes
         ----------
