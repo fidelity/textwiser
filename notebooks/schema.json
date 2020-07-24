@@ -17,7 +17,7 @@
                 {
                     "transform": [
                         "tfidf",
-                        ["nmf", { "n_components": 30 }]
+                        ["nmf", { "n_components": 10 }]
                     ]
                 }
             ]
