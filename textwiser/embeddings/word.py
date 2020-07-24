@@ -146,14 +146,14 @@ def _get_and_init_word_embeddings(word_option: WordOptions, pretrained: str, **p
 
 class _WordEmbeddings(BaseFeaturizer):
     def __init__(self, word_option: WordOptions, pretrained=Constants.default_model, sparse=True, tokenizer=None,
-                 layers=-1, pool_option: Optional[PoolOptions] = None, **kwargs):
+                 layers=-1, inline_pool_option: Optional[PoolOptions] = None, **kwargs):
         super(_WordEmbeddings, self).__init__()
         self.word_option = word_option
         self.pretrained = pretrained
         self.sparse = sparse
         self.tokenizer = tokenizer if tokenizer else split_tokenizer
         self.layers = [layers] if isinstance(layers, int) else layers
-        self.pool_option = pool_option
+        self.inline_pool_option = inline_pool_option
         self.init_args = kwargs
         self.model = None
 
@@ -236,9 +236,9 @@ class _WordEmbeddings(BaseFeaturizer):
                 sent = Sentence(doc)
                 self.model.embed(sent)
                 res = torch.stack([token.embedding for token in sent]).to(device)
-            if self.pool_option:
-                res = pool(res, self.pool_option)
+            if self.inline_pool_option:
+                res = pool(res, self.inline_pool_option)
             all_results.append(res)
-        if self.pool_option:
+        if self.inline_pool_option:
             all_results = torch.stack(all_results, dim=0)
         return all_results

@@ -302,10 +302,16 @@ class WordTest(BaseTest):
         tw1 = TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained='en-turian'),
                         Transformation.Pool(pool_option=PoolOptions.max), dtype=torch.float32)
         tw2 = TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained='en-turian',
-                                       pool_option=PoolOptions.max), dtype=torch.float32)
+                                       inline_pool_option=PoolOptions.max), dtype=torch.float32)
         target = tw1.fit_transform(docs)
         self.assertTrue(torch.allclose(target, tw2.fit_transform(docs)))
 
         # Test that inline pooling can be done through the schema
-        tw3 = TextWiser(Embedding.Compound(schema=["word", {"word_option": "word2vec", "pretrained": "en-turian", "pool_option": "max"}]), dtype=torch.float32)
+        tw3 = TextWiser(Embedding.Compound(schema=["word", {"word_option": "word2vec", "pretrained": "en-turian", "inline_pool_option": "max"}]), dtype=torch.float32)
         self.assertTrue(torch.allclose(target, tw3.fit_transform(docs)))
+
+        # Test that double pooling raises an error
+        with self.assertRaises(ValueError):
+            TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained='en-turian',
+                                     inline_pool_option=PoolOptions.max),
+                      Transformation.Pool(pool_option=PoolOptions.max), dtype=torch.float32)

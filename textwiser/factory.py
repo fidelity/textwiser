@@ -122,6 +122,9 @@ def _get_and_init_doc_embeddings(model: ModelType, params):
     if 'pool_option' in params and params['pool_option'] in PoolOptions.__members__:
         params['pool_option'] = PoolOptions[params['pool_option']]
 
+    if 'inline_pool_option' in params and params['inline_pool_option'] in PoolOptions.__members__:
+        params['inline_pool_option'] = PoolOptions[params['inline_pool_option']]
+
     # string to Embedding or Transformation conversion
     if isinstance(model, str):
         if model in WordOptions.__members__:  # is a WordOption
