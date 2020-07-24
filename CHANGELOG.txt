@@ -10,6 +10,7 @@ major:
 - Added inline pooling for Word embeddings to make some pooling scenarios faster
 
 minor:
+- Updated basic usage notebook
 - Updated preferred method of persistence & examples
 - SVD now properly appears in model parameters and can be fine-tuned
 
