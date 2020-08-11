@@ -14,18 +14,20 @@ setuptools.setup(
     name="textwiser",
     description="TextWiser: Text Featurization Library",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     version=__version__,
     author="FMR LLC",
     url="https://github.com/fidelity/textwiser",
     packages=setuptools.find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
-    # install_requires=required,
+    install_requires=required,
     python_requires=">=3.6",
     classifiers=[
-        "License :: FMR LLC",
+        "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python :: 3.6",
         "Operating System :: OS Independent",
     ],
     project_urls={
-        "Source": "https://github.com/fidelity/textwiser"
+        "Source": "https://github.com/fidelity/textwiser",
+        "Documentation": "https://fidelity.github.io/textwiser/"
     }
 )
