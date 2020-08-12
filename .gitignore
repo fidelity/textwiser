@@ -38,6 +38,7 @@ dev/*
 build/*
 eggs/
 .eggs/
+dist/*
 
 # Unit test / coverage reports
 htmlcov/
