@@ -7,7 +7,7 @@ Installation
 
     There are two alternatives to install the library:
 
-    1. Install from the provided wheel package
+    1. Install from PyPI using the prebuilt wheel package (``pip install textwiser``)
     2. Build from the source code
 
 .. _requirements:
@@ -33,18 +33,11 @@ The library is based on PyTorch but it also relies on:
 Note: There's a known bug with installing ``flair==0.4.4`` on Macs. The `solution <https://github.com/huggingface/neuralcoref/issues/97#issuecomment-439662074>`_ is to
 add a flag to ``pip install``: ``CFLAGS='-stdlib=libc++' pip install -r requirements.txt``.
 
-Wheel Package
--------------
+PyPI
+----
 
-The library is provided as a wheel package. You can install the library from the wheel package using the following commands:
-
-.. code-block:: bash
-
-    git clone https://github.com/fidelity/textwiser
-    cd textwiser
-    pip install dist/textwiser-X.X.X-py3-none-any.whl
-
-.. important:: Don't forget to replace ``X.X.X`` with the current version number.
+TextWiser can be installed using ``pip install textwiser``, which will download the latest wheel from
+`PyPI <http://pypi.org/project/textwiser/>`_. This will also install all required dependencies.
 
 Source Code
 -----------
@@ -59,9 +52,11 @@ Alternatively, you can build a wheel package on your platform from scratch using
     python setup.py bdist_wheel
     pip install dist/textwiser-X.X.X-py3-none-any.whl
 
+.. important:: Don't forget to replace ``X.X.X`` with the current version number.
+
 Test Your Setup
 ---------------
-To confirm that cloning the repo was successful, run the first example in the :ref:`Quick Start<quick>`. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model.
+To confirm that installing the package was successful, run the first example in the :ref:`Quick Start<quick>`. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model.
 
 .. code-block:: bash
 
@@ -78,8 +73,9 @@ For examples of how to use the library, refer to :ref:`Usage Examples<examples>`
 Upgrading the Library
 ---------------------
 
-To upgrade to the latest version of the library, run ``git pull origin master`` in the repo folder,
-and then run ``pip install --upgrade --no-cache-dir dist/textwiser-X.X.X-py3-none-any.whl``.
+To upgrade to the latest version of the library, run ``pip install -U textwiser``. If installing from source, you can
+``git pull origin master`` in the repo folder to pull the latest stable commit, and follow the installation instructions
+above.
 
 Proxy Setup
 -----------

@@ -84,7 +84,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quick.html">Quick Start</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#wheel-package">Wheel Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pypi">PyPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#source-code">Source Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#test-your-setup">Test Your Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#upgrading-the-library">Upgrading the Library</a></li>
@@ -174,7 +174,7 @@
 <p class="admonition-title">Installation Options</p>
 <p>There are two alternatives to install the library:</p>
 <ol class="arabic simple">
-<li><p>Install from the provided wheel package</p></li>
+<li><p>Install from PyPI using the prebuilt wheel package (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">textwiser</span></code>)</p></li>
 <li><p>Build from the source code</p></li>
 </ol>
 </div>
@@ -197,18 +197,10 @@ Once PyTorch is installed, you can install the requirements using <code class="d
 <p>Note: There’s a known bug with installing <code class="docutils literal notranslate"><span class="pre">flair==0.4.4</span></code> on Macs. The <a class="reference external" href="https://github.com/huggingface/neuralcoref/issues/97#issuecomment-439662074">solution</a> is to
 add a flag to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>: <code class="docutils literal notranslate"><span class="pre">CFLAGS='-stdlib=libc++'</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code>.</p>
 </div>
-<div class="section" id="wheel-package">
-<h2>Wheel Package<a class="headerlink" href="#wheel-package" title="Permalink to this headline">¶</a></h2>
-<p>The library is provided as a wheel package. You can install the library from the wheel package using the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/fidelity/textwiser
-<span class="nb">cd</span> textwiser
-pip install dist/textwiser-X.X.X-py3-none-any.whl
-</pre></div>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Don’t forget to replace <code class="docutils literal notranslate"><span class="pre">X.X.X</span></code> with the current version number.</p>
-</div>
+<div class="section" id="pypi">
+<h2>PyPI<a class="headerlink" href="#pypi" title="Permalink to this headline">¶</a></h2>
+<p>TextWiser can be installed using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">textwiser</span></code>, which will download the latest wheel from
+<a class="reference external" href="http://pypi.org/project/textwiser/">PyPI</a>. This will also install all required dependencies.</p>
 </div>
 <div class="section" id="source-code">
 <h2>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h2>
@@ -220,10 +212,14 @@ python setup.py bdist_wheel
 pip install dist/textwiser-X.X.X-py3-none-any.whl
 </pre></div>
 </div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Don’t forget to replace <code class="docutils literal notranslate"><span class="pre">X.X.X</span></code> with the current version number.</p>
+</div>
 </div>
 <div class="section" id="test-your-setup">
 <h2>Test Your Setup<a class="headerlink" href="#test-your-setup" title="Permalink to this headline">¶</a></h2>
-<p>To confirm that cloning the repo was successful, run the first example in the <a class="reference internal" href="quick.html#quick"><span class="std std-ref">Quick Start</span></a>. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model.</p>
+<p>To confirm that installing the package was successful, run the first example in the <a class="reference internal" href="quick.html#quick"><span class="std std-ref">Quick Start</span></a>. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m unittest discover -v tests
 </pre></div>
 </div>
@@ -235,8 +231,9 @@ pip install dist/textwiser-X.X.X-py3-none-any.whl
 </div>
 <div class="section" id="upgrading-the-library">
 <h2>Upgrading the Library<a class="headerlink" href="#upgrading-the-library" title="Permalink to this headline">¶</a></h2>
-<p>To upgrade to the latest version of the library, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code> in the repo folder,
-and then run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">--no-cache-dir</span> <span class="pre">dist/textwiser-X.X.X-py3-none-any.whl</span></code>.</p>
+<p>To upgrade to the latest version of the library, run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">textwiser</span></code>. If installing from source, you can
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code> in the repo folder to pull the latest stable commit, and follow the installation instructions
+above.</p>
 </div>
 <div class="section" id="proxy-setup">
 <h2>Proxy Setup<a class="headerlink" href="#proxy-setup" title="Permalink to this headline">¶</a></h2>
