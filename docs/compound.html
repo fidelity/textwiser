@@ -169,31 +169,46 @@
 <p>More formally, the compound schemas are defined by the following <a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar">context-free grammar</a>:</p>
 <div class="section" id="a-context-free-grammar-of-embeddings">
 <span id="cfg"></span><h2>A Context-Free Grammar of Embeddings<a class="headerlink" href="#a-context-free-grammar-of-embeddings" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>start → option | merge
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>start → embed_like | merge
+
+embed_like → embed_option | &quot;[&quot; embed_option &quot;,&quot; dict &quot;]&quot;
+
+embed_option → BOW | DOC2VEC | TFIDF | USE
 
 merge → &quot;{&quot; TRANSFORM &quot;:&quot; &quot;[&quot; start &quot;,&quot; transform_list &quot;]&quot; &quot;}&quot;
+      | &quot;{&quot; TRANSFORM &quot;:&quot; &quot;[&quot; word_like &quot;,&quot; pool_transform_list &quot;]&quot; &quot;}&quot;
       | &quot;{&quot; CONCAT &quot;:&quot; &quot;[&quot; concat_list &quot;]&quot; &quot;}&quot;
 
-transform_list → transform_start | transform_start &quot;,&quot; transform_list
+transform_list → transform_like | transform_like &quot;,&quot; transform_list
+
+transform_like → transform_option | &quot;[&quot; transform_option &quot;,&quot; dict &quot;]&quot;
+
+transform_option → LDA | NMF | SVD | UMAP
+
+word_like → WORD
+          | &quot;[&quot; WORD &quot;,&quot; dict &quot;]&quot;
+          | word_option
+          | &quot;[&quot; word_option &quot;,&quot; dict &quot;]&quot;
+
+word_option → FLAIR | CHAR | WORD2VEC | ELMO | BERT | GPT | GPT2 | TRANSFORMERXL | XLNET | XLM | ROBERTA | DISTILBERT | CTRL | ALBERT | T5 | XLM_ROBERTA | BART | ELECTRA | DIALO_GPT | LONGFORMER
+
+pool_transform_list → pool_like
+                    | pool_like &quot;,&quot; transform_list
+                    | transform_list &quot;,&quot; pool_like
+                    | transform_list &quot;,&quot; pool_like &quot;,&quot; transform_list
+
+pool_like → POOL | &quot;[&quot; POOL &quot;,&quot; dict &quot;]&quot;
 
 concat_list → start | start &quot;,&quot; concat_list
 
-transform_start → transform_option | &quot;[&quot; transform_option &quot;,&quot; dict &quot;]&quot;
-
-option → embed_option | &quot;[&quot; embed_option &quot;,&quot; dict &quot;]&quot;
-
 TRANSFORM → &quot;transform&quot;
 CONCAT → &quot;concat&quot;
-
-embed_option → BOW | DOC2VEC | TFIDF | USE | WORD | word_option
 
 BOW → &quot;bow&quot;
 DOC2VEC → &quot;doc2vec&quot;
 TFIDF → &quot;tfidf&quot;
 USE → &quot;use&quot;
 WORD → &quot;word&quot;
-
-word_option → FLAIR | CHAR | WORD2VEC | ELMO | BERT | GPT | GPT2 | TRANSFORMERXL | XLNET | XLM | ROBERTA | DISTILBERT | CTRL | ALBERT | T5 | XLM_ROBERTA | BART | ELECTRA | DIALO_GPT | LONGFORMER
 
 FLAIR → &quot;flair&quot;
 CHAR → &quot;char&quot;
@@ -216,8 +231,6 @@ ELECTRA → &quot;electra&quot;
 DIALO_GPT → &quot;dialo_gpt&quot;
 LONGFORMER → &quot;longformer&quot;
 
-transform_option → LDA | NMF | POOL | SVD | UMAP
-
 LDA → &quot;lda&quot;
 NMF → &quot;nmf&quot;
 POOL → &quot;pool&quot;
@@ -225,6 +238,9 @@ SVD → &quot;svd&quot;
 UMAP → &quot;umap&quot;
 </pre></div>
 </div>
+<p>This grammar captures the universe of valid configurations for embeddings that can be specified in TextWiser.
+Note that the <code class="docutils literal notranslate"><span class="pre">dict</span></code> non-terminal denotes a valid JSON dictionary, but is left outside this definition for the sake of brevity.
+A sample implementation of <code class="docutils literal notranslate"><span class="pre">dict</span></code> can be found <a class="reference external" href="https://github.com/lark-parser/lark/blob/master/docs/json_tutorial.md">here</a>.</p>
 </div>
 <div class="section" id="example-compound-schema">
 <h2>Example Compound Schema<a class="headerlink" href="#example-compound-schema" title="Permalink to this headline">¶</a></h2>

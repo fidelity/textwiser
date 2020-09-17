@@ -20,31 +20,46 @@ A Context-Free Grammar of Embeddings
 
 .. code-block::
 
-    start → option | merge
+    start → embed_like | merge
+
+    embed_like → embed_option | "[" embed_option "," dict "]"
+
+    embed_option → BOW | DOC2VEC | TFIDF | USE
 
     merge → "{" TRANSFORM ":" "[" start "," transform_list "]" "}"
+          | "{" TRANSFORM ":" "[" word_like "," pool_transform_list "]" "}"
           | "{" CONCAT ":" "[" concat_list "]" "}"
 
-    transform_list → transform_start | transform_start "," transform_list
+    transform_list → transform_like | transform_like "," transform_list
+
+    transform_like → transform_option | "[" transform_option "," dict "]"
+
+    transform_option → LDA | NMF | SVD | UMAP
+
+    word_like → WORD
+              | "[" WORD "," dict "]"
+              | word_option
+              | "[" word_option "," dict "]"
+
+    word_option → FLAIR | CHAR | WORD2VEC | ELMO | BERT | GPT | GPT2 | TRANSFORMERXL | XLNET | XLM | ROBERTA | DISTILBERT | CTRL | ALBERT | T5 | XLM_ROBERTA | BART | ELECTRA | DIALO_GPT | LONGFORMER
+
+    pool_transform_list → pool_like
+                        | pool_like "," transform_list
+                        | transform_list "," pool_like
+                        | transform_list "," pool_like "," transform_list
+
+    pool_like → POOL | "[" POOL "," dict "]"
 
     concat_list → start | start "," concat_list
 
-    transform_start → transform_option | "[" transform_option "," dict "]"
-
-    option → embed_option | "[" embed_option "," dict "]"
-
     TRANSFORM → "transform"
     CONCAT → "concat"
-
-    embed_option → BOW | DOC2VEC | TFIDF | USE | WORD | word_option
 
     BOW → "bow"
     DOC2VEC → "doc2vec"
     TFIDF → "tfidf"
     USE → "use"
     WORD → "word"
-
-    word_option → FLAIR | CHAR | WORD2VEC | ELMO | BERT | GPT | GPT2 | TRANSFORMERXL | XLNET | XLM | ROBERTA | DISTILBERT | CTRL | ALBERT | T5 | XLM_ROBERTA | BART | ELECTRA | DIALO_GPT | LONGFORMER
 
     FLAIR → "flair"
     CHAR → "char"
@@ -67,13 +82,15 @@ A Context-Free Grammar of Embeddings
     DIALO_GPT → "dialo_gpt"
     LONGFORMER → "longformer"
 
-    transform_option → LDA | NMF | POOL | SVD | UMAP
-
     LDA → "lda"
     NMF → "nmf"
     POOL → "pool"
     SVD → "svd"
     UMAP → "umap"
+
+This grammar captures the universe of valid configurations for embeddings that can be specified in TextWiser.
+Note that the ``dict`` non-terminal denotes a valid JSON dictionary, but is left outside this definition for the sake of brevity.
+A sample implementation of ``dict`` can be found `here <https://github.com/lark-parser/lark/blob/master/docs/json_tutorial.md>`_.
 
 Example Compound Schema
 ^^^^^^^^^^^^^^^^^^^^^^^
