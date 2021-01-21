@@ -6,7 +6,7 @@
 """
 :Author: FMR LLC
 :Email: opensource@fidelity.com
-:Version: 1.3.0 of Jul 22, 2020
+:Version: 1.3.1 of Jan 21, 2021
 
 This module defines the public interface of the
 **TextWiser Library** providing access to the following modules:
