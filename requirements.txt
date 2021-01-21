@@ -1,4 +1,4 @@
-flair>=0.4.3
-scikit-learn
+flair>=0.6.1
+scikit-learn>=0.23.2
 torch>=1.1.0
 transformers
