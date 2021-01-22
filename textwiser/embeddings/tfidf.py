@@ -50,7 +50,7 @@ class _ScikitEmbeddings(BaseFeaturizer):
         needs_fit = self._init_vectorizer()
         if needs_fit:
             return self.vectorizer.fit_transform(x, convert(y, OutputType.array))
-        return self.vectorizer.transform(x, convert(y, OutputType.array))
+        return self.vectorizer.transform(x)
 
 
 class _TfIdfEmbeddings(_ScikitEmbeddings):

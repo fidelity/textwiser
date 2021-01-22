@@ -30,9 +30,6 @@ The library is based on PyTorch but it also relies on:
 * AllenNLP is an optional import for ELMo. If you want to use ELMo, make sure you satisfy ``allennlp``
 * UMAP is an optional import for UMAP transformation. If you want to use UMAP, make sure you satisfy ``umap-learn``
 
-Note: There's a known bug with installing ``flair==0.4.4`` on Macs. The `solution <https://github.com/huggingface/neuralcoref/issues/97#issuecomment-439662074>`_ is to
-add a flag to ``pip install``: ``CFLAGS='-stdlib=libc++' pip install -r requirements.txt``.
-
 PyPI
 ----
 
