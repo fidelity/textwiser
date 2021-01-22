@@ -45,9 +45,9 @@ class CompoundTest(BaseTest):
         expected = torch.tensor([[-1.5983865261,  1.8820908070,  0.1802073568],
                                  [-1.8616025448, -0.4420224428, -0.9159017205],
                                  [-2.0401582718, -1.0712100267,  0.6945561171]], dtype=torch.float32)
-        self._test_fit_transform(tw, expected)
+        self._test_fit_transform(tw, expected, atol=1e-4)
         self._reset_seed()
-        self._test_fit_before_transform(tw, expected)
+        self._test_fit_before_transform(tw, expected, atol=1e-4)
 
     def test_immutable_schema(self):
         schema = {
