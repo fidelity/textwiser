@@ -16,7 +16,7 @@ be optimized automatically for your application.
 
 * **Grammar of Embeddings:** Introduces a novel approach to design embeddings from components. 
 The [compound embedding](#compound-embedding) allows forming arbitrarily complex embeddings in accordance with a 
-[context-free grammar](#a-context-free-grammar-of-embeddings) that defines a formal language for valid text featurization.
+[context-free grammar](https://fidelity.github.io/textwiser/compound.html#a-context-free-grammar-of-embeddings) that defines a formal language for valid text featurization.
 
 * **GPU Native:** Built with GPUs in mind. If it detects available hardware, the relevant models are automatically placed on the GPU. 
  
