@@ -1,8 +1,6 @@
 # TextWiser: Text Featurization Library
 
-TextWiser is a research library that provides a unified framework for text featurization based on a rich set of methods
-while taking advantage of pretrained models provided by the state-of-the-art 
-[Flair](https://github.com/zalandoresearch/flair) library. The main contributions include:
+TextWiser is a research library that provides a unified framework for text featurization based on a rich set of methods while taking advantage of pretrained models provided by the state-of-the-art libraries. The main contributions include:
 
 * **Rich Set of Embeddings:** A wide range of available [embeddings](#available-embeddings) and [transformations](#available-transformations)
  to choose from.  
@@ -21,7 +19,7 @@ The [compound embedding](#compound-embedding) allows forming arbitrarily complex
 * **GPU Native:** Built with GPUs in mind. If it detects available hardware, the relevant models are automatically placed on the GPU. 
  
 <br> 
-TextWiser is developed by the Artificial Intelligence Center of Excellence at Fidelity Investments.
+TextWiser is developed by the Artificial Intelligence Center of Excellence at Fidelity Investments. Full documentation is available at [fidelity.github.io/textwiser](https://fidelity.github.io/textwiser)
 
 ## Quick Start
 
@@ -120,6 +118,25 @@ in our [documentation](https://fidelity.github.io/textwiser/fine_tuning.html)
 
 Please submit bug reports and feature requests as [Issues](https://github.com/fidelity/textwiser/issues).
 You can also submit any additional questions or feedback as issues.
+
+## Citation
+
+If you use TextWiser in a publication, please cite it as:
+
+[D. Kilitcioglu and S. Kadioglu, "Representing the Unification of Text Featurization using a Context-Free Grammar"]
+(https://aaai.org/Conferences/AAAI-21/), in 2021 AAAI 35th Association for the Advancement of Artificial Intelligence, AAAI/IAAI, 2021.
+
+
+```bibtex
+    @inproceedings{textwiser2021,
+      author    = {Kilitcioglu, Doruk and Kadioglu, Serdar},
+      title     = {Representing the Unification of Text Featurization using a Context-Free Grammar},
+      booktitle = {The Thirty-Fifth {AAAI} Conference on Artificial Intelligence, {AAAI} 2020, The Thirty-Third Innovative Applications of Artificial Intelligence Conference, {IAAI} 2020},
+      year      = {2021},
+      publisher = {{AAAI} Press},
+      url       = {https://github.com/fidelity/textwiser}
+    }
+```
 
 ## License
 TextWiser is licensed under the [Apache License 2.0](LICENSE).
