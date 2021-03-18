@@ -18,9 +18,10 @@ The [compound embedding](#compound-embedding) allows forming arbitrarily complex
 
 * **GPU Native:** Built with GPUs in mind. If it detects available hardware, the relevant models are automatically placed on the GPU. 
  
-<br> 
-TextWiser is developed by the Artificial Intelligence Center of Excellence at Fidelity Investments. Full documentation is available at [fidelity.github.io/textwiser](https://fidelity.github.io/textwiser)
+<br>
 
+TextWiser is developed by the Artificial Intelligence Center of Excellence at Fidelity Investments. Full documentation is available at [fidelity.github.io/textwiser](https://fidelity.github.io/textwiser).
+ 
 ## Quick Start
 
 ```python
@@ -123,8 +124,7 @@ You can also submit any additional questions or feedback as issues.
 
 If you use TextWiser in a publication, please cite it as:
 
-[D. Kilitcioglu and S. Kadioglu, "Representing the Unification of Text Featurization using a Context-Free Grammar"]
-(https://aaai.org/Conferences/AAAI-21/), in 2021 AAAI 35th Association for the Advancement of Artificial Intelligence, AAAI/IAAI, 2021.
+[D. Kilitcioglu and S. Kadioglu, "Representing the Unification of Text Featurization using a Context-Free Grammar"](https://aaai.org/Conferences/AAAI-21/), in 2021 AAAI 35th Association for the Advancement of Artificial Intelligence, AAAI/IAAI, 2021.
 
 
 ```bibtex
