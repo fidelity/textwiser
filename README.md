@@ -124,7 +124,7 @@ You can also submit any additional questions or feedback as issues.
 
 If you use TextWiser in a publication, please cite it as:
 
-[D. Kilitcioglu and S. Kadioglu, "Representing the Unification of Text Featurization using a Context-Free Grammar"](https://aaai.org/Conferences/AAAI-21/), in 2021 AAAI 35th Association for the Advancement of Artificial Intelligence, AAAI/IAAI, 2021.
+[D. Kilitcioglu and S. Kadioglu, "Representing the Unification of Text Featurization using a Context-Free Grammar"](https://ojs.aaai.org/index.php/AAAI/article/view/17814), in 2021 AAAI 35th Association for the Advancement of Artificial Intelligence, AAAI/IAAI, 2021.
 
 
 ```bibtex
