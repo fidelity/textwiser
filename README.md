@@ -128,14 +128,17 @@ If you use TextWiser in a publication, please cite it as:
 
 
 ```bibtex
-    @inproceedings{textwiser2021,
-      author    = {Kilitcioglu, Doruk and Kadioglu, Serdar},
-      title     = {Representing the Unification of Text Featurization using a Context-Free Grammar},
-      booktitle = {The Thirty-Fifth {AAAI} Conference on Artificial Intelligence, {AAAI} 2020, The Thirty-Third Innovative Applications of Artificial Intelligence Conference, {IAAI} 2020},
-      year      = {2021},
-      publisher = {{AAAI} Press},
-      url       = {https://github.com/fidelity/textwiser}
-    }
+  @article{textwiser2021,
+    author={Kilitcioglu, Doruk and Kadioglu, Serdar},
+    title={Representing the Unification of Text Featurization using a Context-Free Grammar},
+    url={https://github.com/fidelity/textwiser},
+    journal={Proceedings of the AAAI Conference on Artificial Intelligence},
+    volume={35},
+    number={17},
+    year={2021},
+    month={May},
+    pages={15439-15445}
+  }
 ```
 
 ## License
