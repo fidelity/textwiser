@@ -1,6 +1,6 @@
 # TextWiser: Text Featurization Library
 
-TextWiser is a research library that provides a unified framework for text featurization based on a rich set of methods while taking advantage of pretrained models provided by the state-of-the-art libraries. The main contributions include:
+[TextWiser](https://ojs.aaai.org/index.php/AAAI/article/view/17814) is a research library that provides a unified framework for text featurization based on a rich set of methods while taking advantage of pretrained models provided by the state-of-the-art libraries. The main contributions include:
 
 * **Rich Set of Embeddings:** A wide range of available [embeddings](#available-embeddings) and [transformations](#available-transformations)
  to choose from.  
