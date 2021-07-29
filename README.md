@@ -1,26 +1,24 @@
 # TextWiser: Text Featurization Library
 
-[TextWiser](https://ojs.aaai.org/index.php/AAAI/article/view/17814) is a research library that provides a unified framework for text featurization based on a rich set of methods while taking advantage of pretrained models provided by the state-of-the-art libraries. The main contributions include:
+[TextWiser (AAAI'21)](https://ojs.aaai.org/index.php/AAAI/article/view/17814) is a research library that provides a unified framework for text featurization based on a rich set of methods while taking advantage of pretrained models provided by the state-of-the-art libraries. 
+
+The main contributions include:
 
 * **Rich Set of Embeddings:** A wide range of available [embeddings](#available-embeddings) and [transformations](#available-transformations)
  to choose from.  
-
 * **Fine-Tuning:** Designed to support a ``PyTorch`` backend, and hence, retains the ability to 
 [fine-tune featurizations](#fine-tuning-for-downstream-tasks) for downstream tasks. 
 That means, if you pass the resulting fine-tunable embeddings to a training method, the features will 
 be optimized automatically for your application. 
-
 * **Parameter Optimization:** Interoperable with the standard ```scikit-learn``` pipeline for hyper-parameter tuning and rapid experimentation. All underlying parameters are exposed to the user.
-
 * **Grammar of Embeddings:** Introduces a novel approach to design embeddings from components. 
 The [compound embedding](#compound-embedding) allows forming arbitrarily complex embeddings in accordance with a 
 [context-free grammar](https://fidelity.github.io/textwiser/compound.html#a-context-free-grammar-of-embeddings) that defines a formal language for valid text featurization.
-
 * **GPU Native:** Built with GPUs in mind. If it detects available hardware, the relevant models are automatically placed on the GPU. 
  
 <br>
 
-TextWiser is developed by the Artificial Intelligence Center of Excellence at Fidelity Investments. Full documentation is available at [fidelity.github.io/textwiser](https://fidelity.github.io/textwiser).
+TextWiser is developed by the Artificial Intelligence Center of Excellence at Fidelity Investments. Documentation is available at [fidelity.github.io/textwiser](https://fidelity.github.io/textwiser).
  
 ## Quick Start
 
