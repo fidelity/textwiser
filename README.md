@@ -1,3 +1,6 @@
+[![Downloads](https://static.pepy.tech/personalized-badge/textwiser?period=total&units=international_system&left_color=grey&right_color=orange&left_text=Downloads)](https://pepy.tech/project/textwiser)
+
+
 # TextWiser: Text Featurization Library
 
 [TextWiser (AAAI'21)](https://ojs.aaai.org/index.php/AAAI/article/view/17814) is a research library that provides a unified framework for text featurization based on a rich set of methods while taking advantage of pretrained models provided by the state-of-the-art libraries. 
