@@ -1,4 +1,4 @@
-[![Downloads](https://static.pepy.tech/personalized-badge/textwiser?period=total&units=international_system&left_color=grey&right_color=orange&left_text=Downloads)](https://pepy.tech/project/textwiser)
+[![ci](https://github.com/fidelity/textwiser/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/fidelity/textwiser/actions/workflows/ci.yml) [![PyPI version fury.io](https://badge.fury.io/py/textwiser.svg)](https://pypi.python.org/pypi/textwiser/) [![PyPI license](https://img.shields.io/pypi/l/textwiser.svg)](https://pypi.python.org/pypi/textwiser/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![Downloads](https://static.pepy.tech/personalized-badge/textwiser?period=total&units=international_system&left_color=grey&right_color=orange&left_text=Downloads)](https://pepy.tech/project/textwiser)
 
 
 # TextWiser: Text Featurization Library
