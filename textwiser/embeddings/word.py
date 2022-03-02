@@ -33,6 +33,14 @@ def bytepair_tokenizer(docs, bp):
 
 
 def transformers_loader(pretrained, **kwargs):
+    # Ignore errors not relevant for word embeddings
+    # This is the same as flair's solution:
+    # https://github.com/flairNLP/flair/blob/016cd5273f8f3c00cac119debd1a657d5f86d761/flair/embeddings/base.py#L197
+    # Confirmed by transformers team this has always been the case, but logging is new
+    # https://github.com/huggingface/transformers/issues/5421#issuecomment-656126143
+    from transformers import logging
+    logging.set_verbosity_error()
+
     config = AutoConfig.from_pretrained(pretrained, output_hidden_states=True, **kwargs)
     return AutoTokenizer.from_pretrained(pretrained), AutoModel.from_pretrained(pretrained, config=config).to(device)
 
