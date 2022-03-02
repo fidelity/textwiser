@@ -14,7 +14,24 @@ class _SVDTransformation(_BaseTransformation):
         self.init_args = kwargs
 
     def _fit(self, x, y=None):
-        _, _, V = torch.svd(x, **self.init_args)
+        try:
+            # Future-proofing of SVD, different import point
+            # Same result as `torch.svd`.
+            _, _, Vh = torch.linalg.svd(x, **self.init_args)
+            V = Vh.transpose(-2, -1).conj()
+        except AttributeError:
+            # Legacy SVD. Same result as `torch.linalg.svd`.
+            _, _, V = torch.svd(x, **self.init_args)
+
+        # Numerical instability: The generated torch tensors are not guaranteed to be unique
+        # Specifically, the `V` tensor can be a matrix M, or its negative (-M), depending on the underlying system
+        # See: https://pytorch.org/docs/stable/generated/torch.linalg.svd.html#torch.linalg.svd
+        # To ensure consistency across systems, we can arbitrarily select the version of the matrix that is positive
+        # in the very first index.
+        init_value = torch.flatten(V.data).detach().cpu().numpy()[0]
+        if init_value < 0:
+            V = -V
+
         if self.n_components:
             V = V[:, :self.n_components]
             if V.shape[1] < self.n_components:
