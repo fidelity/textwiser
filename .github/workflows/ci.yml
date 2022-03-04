@@ -28,5 +28,5 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip install -e .[full]
-          python3 -m unittest discover -v tests
+          TEST_WORD_EMBEDDINGS=bert python3 -m unittest discover -v tests
           python3 setup.py install
