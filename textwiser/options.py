@@ -433,16 +433,22 @@ class Transformation(NamedTuple):
         ----------
         n_components: int
             The number of topics to use.
+        random_state: Optional[int]
+            The random number seed. Use ``None`` to get non-reproducible results.
         """
 
-        def __init__(self, n_components: int = 10, **kwargs):
+        def __init__(self, n_components: int = 10, random_state: Optional[int] = 42, **kwargs):
             self.n_components = n_components
+            self.random_state = random_state
             super().__init__(**kwargs)
 
         def _validate(self, finetune_enabled=False):
             import umap  # this will fail if umap is not available
             check_true(isinstance(self.n_components, int), TypeError("The number of components must be an integer."))
             check_true(self.n_components >= 2, ValueError("The number of components must be at least two."))
+            check_true(isinstance(self.n_components, int), TypeError("The number of components must be an integer."))
+            check_true(self.random_state is None or isinstance(self.random_state, int),
+                       TypeError("The random seed must be an integer or ``None``."))
 
     class Pool(_ArgBase):
         """Pool Transformation.
