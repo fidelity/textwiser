@@ -7,6 +7,9 @@ with open("README.md", "r") as fh:
 with open("requirements.txt") as fh:
     required = fh.read().splitlines()
 
+with open("full_requirements.txt") as fh:
+    full_reqs = fh.read().splitlines()
+
 with open(os.path.join('textwiser', '_version.py')) as fp:
     exec(fp.read())
 
@@ -21,6 +24,7 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     install_requires=required,
     python_requires=">=3.6",
+    extras_require={"full": full_reqs},
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python :: 3.6",
