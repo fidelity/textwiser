@@ -36,6 +36,8 @@ PyPI
 TextWiser can be installed using ``pip install textwiser``, which will download the latest wheel from
 `PyPI <http://pypi.org/project/textwiser/>`_. This will also install all required dependencies.
 
+Alternatively, you can use ``pip install textwiser[full]`` to install TextWiser with all the optional dependencies.
+
 Source Code
 -----------
 

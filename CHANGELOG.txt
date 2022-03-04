@@ -3,6 +3,17 @@ TextWiser CHANGELOG
 =====================
 
 -------------------------------------------------------------------------------
+Mar 03, 2022 1.4.0
+-------------------------------------------------------------------------------
+major:
+- Update UMAP to return deterministic output in latest version
+- Update SVD to return deterministic output
+
+minor:
+- Disable non-relevant transformers warning
+- Add full requirement install option
+
+-------------------------------------------------------------------------------
 Feb 23, 2022 1.3.2
 -------------------------------------------------------------------------------
 minor:
