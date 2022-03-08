@@ -19,8 +19,6 @@ The [compound embedding](#compound-embedding) allows forming arbitrarily complex
 [context-free grammar](https://fidelity.github.io/textwiser/compound.html#a-context-free-grammar-of-embeddings) that defines a formal language for valid text featurization.
 * **GPU Native:** Built with GPUs in mind. If it detects available hardware, the relevant models are automatically placed on the GPU. 
  
-<br>
-
 TextWiser is developed by the Artificial Intelligence Center of Excellence at Fidelity Investments. Documentation is available at [fidelity.github.io/textwiser](https://fidelity.github.io/textwiser). Here is the [video of the paper presentation at AAAI 2021](https://slideslive.com/38951112/representing-the-unification-of-text-featurization-using-a-contextfree-grammar?ref=account-folder-75501-folders). 
  
 ## Quick Start
