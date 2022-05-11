@@ -27,6 +27,6 @@ jobs:
         shell: bash
         run: |
           python3 -m pip install --upgrade pip
-          pip install -e .[full]
+          pip3 install -e .[full]
           PYTHONHASHSEED=0 TEST_WORD_EMBEDDINGS=bert python3 -m unittest discover -v tests
           python3 setup.py install
