@@ -9,7 +9,8 @@ class UMAPTest(BaseTest):
 
     def test_fit_transform(self):
         try:
-            tw = TextWiser(Embedding.TfIdf(min_df=1), Transformation.UMAP(init='random', n_neighbors=2, n_components=2),
+            tw = TextWiser(Embedding.TfIdf(min_df=1), Transformation.UMAP(init='random', n_neighbors=2, n_components=2,
+                                                                          n_jobs=1),
                            dtype=torch.float32)
             expected = torch.tensor([[9.6560449600, 18.2185001373],
                                      [10.3494615555, 18.9444656372],
