@@ -55,11 +55,11 @@ Alternatively, you can build a wheel package on your platform from scratch using
 
 Test Your Setup
 ---------------
-To confirm that installing the package was successful, run the first example in the :ref:`Quick Start<quick>`. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model.
+To confirm that installing the package was successful, run the first example in the :ref:`Quick Start<quick>`. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model. Note that the ``PYTHONHASHSEED=0`` variable is necessary to ensure Doc2Vec training is reproducible - you do not need this if reproducibility is not important, or if you're not using Doc2Vec.
 
 .. code-block:: bash
 
-    python -m unittest discover -v tests
+    PYTHONHASHSEED=0 python -m unittest discover -v tests
 
 You can also set the ``TEST_WORD_EMBEDDINGS`` environmental variable to comma-separated word embeddings (ex: ``bert,flair``) to test them, or to ``all`` to test all possible word embeddings. Note that this will download all word embeddings, which is very time-consuming, and it assumes all optional requirements are satisfied.
 

@@ -165,11 +165,18 @@ class _WordEmbeddings(BaseFeaturizer):
         self.init_args = kwargs
         self.model = None
 
-    def _set_python_embeddings(self, keyed_vectors):
-        self.vocab = keyed_vectors.vocab
+    def _set_flair_embeddings(self, embeddings: FlairWordEmbeddings):
+        self.vocab = embeddings.vocab
         self.model = nn.Embedding.from_pretrained(
-            torch.cat([torch.from_numpy(keyed_vectors.vectors),
-                       torch.zeros([1, keyed_vectors.vector_size], requires_grad=True)]),
+            embeddings.embedding.weight,
+            freeze=False, sparse=self.sparse).to(device)
+
+    def _set_gensim_embeddings(self, w2v: Word2Vec):
+        # Set it similar to Flair
+        self.vocab = w2v.key_to_index
+        self.model = nn.Embedding.from_pretrained(
+            torch.cat([torch.from_numpy(w2v.vectors),
+                       torch.zeros([1, w2v.vector_size], requires_grad=True)]),
             freeze=False, sparse=self.sparse).to(device)
 
     def _set_bytepair_embeddings(self, bp):
@@ -183,21 +190,21 @@ class _WordEmbeddings(BaseFeaturizer):
 
     def _match_word(self, word: str):
         if word in self.vocab:
-            return self.vocab[word].index
+            return self.vocab[word]
         elif word.lower() in self.vocab:
-            return self.vocab[word.lower()].index
+            return self.vocab[word.lower()]
         elif (
             re.sub(r"\d", "#", word.lower()) in self.vocab
         ):
             return self.vocab[
                 re.sub(r"\d", "#", word.lower())
-            ].index
+            ]
         elif (
             re.sub(r"\d", "0", word.lower()) in self.vocab
         ):
             return self.vocab[
                 re.sub(r"\d", "0", word.lower())
-            ].index
+            ]
         else:
             return len(self.vocab)  # oov
 
@@ -210,13 +217,13 @@ class _WordEmbeddings(BaseFeaturizer):
             if self.word_option.is_from_transformers():
                 self.tokenizer, self.model = self.model
             elif self.word_option is WordOptions.word2vec:
-                self._set_python_embeddings(self.model.precomputed_word_embeddings)
+                self._set_flair_embeddings(self.model)
             elif self.word_option is WordOptions.bytepair:
                 self._set_bytepair_embeddings(self.model)
         else:
             if self.word_option is WordOptions.word2vec:  # Word2Vec is fittable
                 w2v = Word2Vec([self.tokenizer(doc) for doc in x], **self.init_args)
-                self._set_python_embeddings(w2v.wv)
+                self._set_gensim_embeddings(w2v.wv)
             else:
                 raise NotImplementedError("A {} model cannot be trained from scratch.".format(self.word_option))
 

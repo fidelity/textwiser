@@ -1,5 +1,6 @@
 # Copyright 2019 FMR LLC <opensource@fidelity.com>
 # SPDX-License-Identifer: Apache-2.0
+import warnings
 
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 import numpy as np
@@ -22,9 +23,14 @@ class _Doc2VecEmbeddings(BaseFeaturizer):
 
     def fit(self, x, y=None):
         def fit_model():
+            if 'PYTHONHASHSEED' not in os.environ:
+                # Since gensim 4.0, Doc2Vec is only reproducible when ``PYTHONHASHSEED`` is set. So we can give a
+                # warning to the users if they're not using it when training a model.
+                warnings.warn(
+                    "The ``PYTHONHASHSEED`` environmental variable isn't set. If you want to get a reproducible"
+                    "Doc2Vec model, please set ``PYTHONHASHSEED`` and run your training script again.")
             documents = [TaggedDocument(self.tokenizer(doc), [i]) for i, doc in enumerate(x)]
             self.model = Doc2Vec(documents, **self.init_args)
-            self.model.delete_temporary_training_data(keep_doctags_vectors=False, keep_inference=True)
 
         if isinstance(self.pretrained, str):
             if self.pretrained is Constants.default_model:
