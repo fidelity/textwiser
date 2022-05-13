@@ -1,4 +1,5 @@
-allennlp>=1.0
+allennlp>=1.0,allennlp<2.7.0; python_version == '3.6'
+allennlp>=1.0; python_version >= '3.7'
 tensorflow>=2.0.0
 tensorflow-hub>=0.7.0
 umap-learn>=0.5.1
