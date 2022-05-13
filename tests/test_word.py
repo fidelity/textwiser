@@ -292,9 +292,10 @@ class WordTest(BaseTest):
             emb_params = embedding_params.get(o, dict())
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
-                tw = TextWiser(Embedding.Word(word_option=o, **emb_params), dtype=torch.float32, **tw_params).fit()
-                tw.transform(docs)
-                tw.transform(long_doc)
+                tw = TextWiser(Embedding.Word(word_option=o, **emb_params),
+                               Transformation.Pool(pool_option=PoolOptions.max), dtype=torch.float32, **tw_params).fit()
+                self.assertTrue(isinstance(tw.transform(docs), torch.Tensor))
+                self.assertTrue(isinstance(tw.transform(long_doc), torch.Tensor))
                 print('ok', flush=True)
 
     def test_inline_pool(self):

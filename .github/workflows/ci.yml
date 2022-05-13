@@ -28,4 +28,4 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip wheel
           pip3 install -e .[full]
-          PYTHONHASHSEED=0 TEST_WORD_EMBEDDINGS=bert python3 -m unittest discover -v tests
+          PYTHONHASHSEED=0 TEST_WORD_EMBEDDINGS=bert,elmo python3 -m unittest discover -v tests

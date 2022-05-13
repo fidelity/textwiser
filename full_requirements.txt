@@ -1,4 +1,4 @@
-allennlp
+allennlp>=1.0
 tensorflow>=2.0.0
 tensorflow-hub>=0.7.0
 umap-learn>=0.5.1
