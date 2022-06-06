@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; TextWiser 1.3.2 documentation</title>
+  <title>Installation &mdash; TextWiser 1.4.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -88,7 +89,7 @@
            <div itemprop="articleBody">
              
   <section id="installation">
-<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
 <div class="admonition-installation-options admonition">
 <p class="admonition-title">Installation Options</p>
 <p>There are two alternatives to install the library:</p>
@@ -98,7 +99,7 @@
 </ol>
 </div>
 <section id="requirements">
-<span id="id2"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline"></a></h2>
+<span id="id2"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
 <p>The library requires Python <strong>3.6+</strong>. The <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> lists the necessary packages.
 It is <strong>strongly recommended</strong> to install PyTorch following the <a class="reference external" href="https://pytorch.org/get-started/locally/">PyTorch installation instructions</a> before installing TextWiser.
 Otherwise, you might get stuck with a CPU-only version.
@@ -111,16 +112,17 @@ Once PyTorch is installed, you can install the requirements using <code class="d
 <li><p>Spacy and it’s <code class="docutils literal notranslate"><span class="pre">en</span></code> model are optional imports for OpenAI GPT; the model can be installed using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">spacy</span> <span class="pre">download</span> <span class="pre">en</span></code></p></li>
 <li><p>Tensorflow is an optional import for Universal Sentence Encoder. If you want to use USE, make sure you satisfy <code class="docutils literal notranslate"><span class="pre">tensorflow&gt;=2.0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">tensorflow-hub&gt;=0.7.0</span></code>.</p></li>
 <li><p>AllenNLP is an optional import for ELMo. If you want to use ELMo, make sure you satisfy <code class="docutils literal notranslate"><span class="pre">allennlp</span></code></p></li>
-<li><p>UMAP is an optional import for UMAP transformation. If you want to use UMAP, make sure you satisfy <code class="docutils literal notranslate"><span class="pre">umap-learn</span></code></p></li>
+<li><p>UMAP is an optional import for UMAP transformation. If you want to use UMAP, make sure you satisfy <code class="docutils literal notranslate"><span class="pre">umap-learn&gt;=0.5.1</span></code></p></li>
 </ul>
 </section>
 <section id="pypi">
-<h2>PyPI<a class="headerlink" href="#pypi" title="Permalink to this headline"></a></h2>
+<h2>PyPI<a class="headerlink" href="#pypi" title="Permalink to this heading"></a></h2>
 <p>TextWiser can be installed using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">textwiser</span></code>, which will download the latest wheel from
 <a class="reference external" href="http://pypi.org/project/textwiser/">PyPI</a>. This will also install all required dependencies.</p>
+<p>Alternatively, you can use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">textwiser[full]</span></code> to install TextWiser with all the optional dependencies.</p>
 </section>
 <section id="source-code">
-<h2>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline"></a></h2>
+<h2>Source Code<a class="headerlink" href="#source-code" title="Permalink to this heading"></a></h2>
 <p>Alternatively, you can build a wheel package on your platform from scratch using the source code:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/fidelity/textwiser
 <span class="nb">cd</span> textwiser
@@ -135,9 +137,9 @@ pip install dist/textwiser-X.X.X-py3-none-any.whl
 </div>
 </section>
 <section id="test-your-setup">
-<h2>Test Your Setup<a class="headerlink" href="#test-your-setup" title="Permalink to this headline"></a></h2>
-<p>To confirm that installing the package was successful, run the first example in the <a class="reference internal" href="quick.html#quick"><span class="std std-ref">Quick Start</span></a>. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m unittest discover -v tests
+<h2>Test Your Setup<a class="headerlink" href="#test-your-setup" title="Permalink to this heading"></a></h2>
+<p>To confirm that installing the package was successful, run the first example in the <a class="reference internal" href="quick.html#quick"><span class="std std-ref">Quick Start</span></a>. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model. Note that the <code class="docutils literal notranslate"><span class="pre">PYTHONHASHSEED=0</span></code> variable is necessary to ensure Doc2Vec training is reproducible - you do not need this if reproducibility is not important, or if you’re not using Doc2Vec.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONHASHSEED</span><span class="o">=</span><span class="m">0</span> python -m unittest discover -v tests
 </pre></div>
 </div>
 <p>You can also set the <code class="docutils literal notranslate"><span class="pre">TEST_WORD_EMBEDDINGS</span></code> environmental variable to comma-separated word embeddings (ex: <code class="docutils literal notranslate"><span class="pre">bert,flair</span></code>) to test them, or to <code class="docutils literal notranslate"><span class="pre">all</span></code> to test all possible word embeddings. Note that this will download all word embeddings, which is very time-consuming, and it assumes all optional requirements are satisfied.</p>
@@ -147,16 +149,16 @@ pip install dist/textwiser-X.X.X-py3-none-any.whl
 <p>For examples of how to use the library, refer to <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Usage Examples</span></a>.</p>
 </section>
 <section id="upgrading-the-library">
-<h2>Upgrading the Library<a class="headerlink" href="#upgrading-the-library" title="Permalink to this headline"></a></h2>
+<h2>Upgrading the Library<a class="headerlink" href="#upgrading-the-library" title="Permalink to this heading"></a></h2>
 <p>To upgrade to the latest version of the library, run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">textwiser</span></code>. If installing from source, you can
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code> in the repo folder to pull the latest stable commit, and follow the installation instructions
 above.</p>
 </section>
 <section id="proxy-setup">
-<h2>Proxy Setup<a class="headerlink" href="#proxy-setup" title="Permalink to this headline"></a></h2>
+<h2>Proxy Setup<a class="headerlink" href="#proxy-setup" title="Permalink to this heading"></a></h2>
 <p>In order to install the requirements and download pretrained models, a proxy setup may be required. Replace the proxy settings below with your own proxy configuration.</p>
 <section id="anaconda">
-<h3>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline"></a></h3>
+<h3>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this heading"></a></h3>
 <p>Update your <code class="docutils literal notranslate"><span class="pre">.condarc</span></code> file to include the following lines:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proxy_servers:
     http: http://&lt;proxy_url&gt;:&lt;proxy_port&gt;
@@ -165,11 +167,11 @@ above.</p>
 </div>
 </section>
 <section id="pip">
-<h3>Pip<a class="headerlink" href="#pip" title="Permalink to this headline"></a></h3>
+<h3>Pip<a class="headerlink" href="#pip" title="Permalink to this heading"></a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--proxy</span> <span class="pre">http://&lt;proxy_url&gt;:&lt;proxy_port&gt;</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code> while installing the packages.</p>
 </section>
 <section id="unix-command-line">
-<h3>Unix Command Line<a class="headerlink" href="#unix-command-line" title="Permalink to this headline"></a></h3>
+<h3>Unix Command Line<a class="headerlink" href="#unix-command-line" title="Permalink to this heading"></a></h3>
 <p>Add the following lines to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span>http://&lt;proxy_url&gt;:&lt;proxy_port&gt;
 <span class="nb">export</span> <span class="nv">HTTPS_PROXY</span><span class="o">=</span><span class="nv">$http_proxy</span>
@@ -180,7 +182,7 @@ above.</p>
 </div>
 </section>
 <section id="pycharm">
-<h3>PyCharm<a class="headerlink" href="#pycharm" title="Permalink to this headline"></a></h3>
+<h3>PyCharm<a class="headerlink" href="#pycharm" title="Permalink to this heading"></a></h3>
 <p>Add the following environment variables to your run configuration:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://&lt;proxy_url&gt;:&lt;proxy_port&gt;<span class="p">;</span><span class="nv">HTTPS_PROXY</span><span class="o">=</span>http://&lt;proxy_url&gt;:&lt;proxy_port&gt;
 </pre></div>

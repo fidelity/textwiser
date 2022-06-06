@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TextWiser Public API &mdash; TextWiser 1.3.2 documentation</title>
+  <title>TextWiser Public API &mdash; TextWiser 1.4.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -81,7 +82,7 @@
            <div itemprop="articleBody">
              
   <section id="module-textwiser">
-<span id="textwiser-public-api"></span><span id="textwiser-api"></span><h1>TextWiser Public API<a class="headerlink" href="#module-textwiser" title="Permalink to this headline"></a></h1>
+<span id="textwiser-public-api"></span><span id="textwiser-api"></span><h1>TextWiser Public API<a class="headerlink" href="#module-textwiser" title="Permalink to this heading"></a></h1>
 <dl class="field-list simple">
 <dt class="field-odd">Author</dt>
 <dd class="field-odd"><p>FMR LLC</p>
@@ -90,7 +91,7 @@
 <dd class="field-even"><p><a class="reference external" href="mailto:opensource&#37;&#52;&#48;fidelity&#46;com">opensource<span>&#64;</span>fidelity<span>&#46;</span>com</a></p>
 </dd>
 <dt class="field-odd">Version</dt>
-<dd class="field-odd"><p>1.3.2 of Jan 21, 2021</p>
+<dd class="field-odd"><p>1.3.2 of Feb 23, 2022</p>
 </dd>
 </dl>
 <p>This module defines the public interface of the
@@ -106,11 +107,11 @@
 </ul>
 </div></blockquote>
 <section id="textwiser">
-<h2>TextWiser<a class="headerlink" href="#textwiser" title="Permalink to this headline"></a></h2>
+<h2>TextWiser<a class="headerlink" href="#textwiser" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.TextWiser">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">TextWiser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">embedding:</span> <span class="pre">Union[textwiser.options.Embedding.BOW,</span> <span class="pre">textwiser.options.Embedding.Compound,</span> <span class="pre">textwiser.options.Embedding.Doc2Vec,</span> <span class="pre">textwiser.options.Embedding.Random,</span> <span class="pre">textwiser.options.Embedding.TfIdf,</span> <span class="pre">textwiser.options.Embedding.USE,</span> <span class="pre">textwiser.options.Embedding.Word],</span> <span class="pre">transformations:</span> <span class="pre">Union[None,</span> <span class="pre">textwiser.options.Transformation.LDA,</span> <span class="pre">textwiser.options.Transformation.NMF,</span> <span class="pre">textwiser.options.Transformation.Pool,</span> <span class="pre">textwiser.options.Transformation.SVD,</span> <span class="pre">textwiser.options.Transformation.UMAP,</span> <span class="pre">List[Union[textwiser.options.Transformation.LDA,</span> <span class="pre">textwiser.options.Transformation.NMF,</span> <span class="pre">textwiser.options.Transformation.Pool,</span> <span class="pre">textwiser.options.Transformation.SVD,</span> <span class="pre">textwiser.options.Transformation.UMAP]]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">is_finetuneable:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">dtype:</span> <span class="pre">Union[numpy.generic,</span> <span class="pre">torch.dtype]</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'numpy.float32'&gt;,</span> <span class="pre">lazy_load:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.TextWiser" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">textwiser.base.BaseFeaturizer</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">TextWiser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">embedding:</span> <span class="pre">~typing.Union[~textwiser.options.Embedding.BOW,</span> <span class="pre">~textwiser.options.Embedding.Compound,</span> <span class="pre">~textwiser.options.Embedding.Doc2Vec,</span> <span class="pre">~textwiser.options.Embedding.Random,</span> <span class="pre">~textwiser.options.Embedding.TfIdf,</span> <span class="pre">~textwiser.options.Embedding.USE,</span> <span class="pre">~textwiser.options.Embedding.Word],</span> <span class="pre">transformations:</span> <span class="pre">~typing.Union[None,</span> <span class="pre">~textwiser.options.Transformation.LDA,</span> <span class="pre">~textwiser.options.Transformation.NMF,</span> <span class="pre">~textwiser.options.Transformation.Pool,</span> <span class="pre">~textwiser.options.Transformation.SVD,</span> <span class="pre">~textwiser.options.Transformation.UMAP,</span> <span class="pre">~typing.List[~typing.Union[~textwiser.options.Transformation.LDA,</span> <span class="pre">~textwiser.options.Transformation.NMF,</span> <span class="pre">~textwiser.options.Transformation.Pool,</span> <span class="pre">~textwiser.options.Transformation.SVD,</span> <span class="pre">~textwiser.options.Transformation.UMAP]]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">is_finetuneable:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">dtype:</span> <span class="pre">~typing.Union[~numpy.generic,</span> <span class="pre">~torch.dtype]</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'numpy.float32'&gt;,</span> <span class="pre">lazy_load:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.TextWiser" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseFeaturizer</span></code></p>
 <p><strong>TextWiser: Text Featurization Library</strong></p>
 <p>TextWiser is a library that provides a unified framework for text featurization based on a rich set of methods.</p>
 <dl class="py attribute">
@@ -191,20 +192,20 @@ or the gradients will be made.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.TextWiser.training">
-<span class="sig-name descname"><span class="pre">training</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#textwiser.TextWiser.training" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">training</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#textwiser.TextWiser.training" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="embedding">
-<h2>Embedding<a class="headerlink" href="#embedding" title="Permalink to this headline"></a></h2>
+<h2>Embedding<a class="headerlink" href="#embedding" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Embedding">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">Embedding</span></span><a class="headerlink" href="#textwiser.Embedding" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">Embedding</span></span><a class="headerlink" href="#textwiser.Embedding" title="Permalink to this definition"></a></dt>
 <dd><dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Embedding.BOW">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">BOW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.BOW" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BOW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.BOW" title="Permalink to this definition"></a></dt>
 <dd><p>Bag of words embeddings.</p>
 <p>Computes the frequency of words in each document and uses that as the representation.
 Supports any attributes that sklearn.feature_extraction.text.CountVectorizer may need.</p>
@@ -212,7 +213,7 @@ Supports any attributes that sklearn.feature_extraction.text.CountVectorizer may
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Embedding.Compound">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Compound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">,</span> </span><span class="pre">tuple</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Compound" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Compound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Compound" title="Permalink to this definition"></a></dt>
 <dd><p>Compound embeddings derived from a schema.</p>
 <p>Compound embeddings cannot be pretrained, you should instead save the whole TextWiser object.</p>
 <dl class="py attribute">
@@ -245,7 +246,7 @@ If it is a dictionary object, it is assumed to be the JSON schema itself.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Embedding.Doc2Vec">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Doc2Vec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deterministic</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Doc2Vec" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Doc2Vec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deterministic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Doc2Vec" title="Permalink to this definition"></a></dt>
 <dd><p>Doc2Vec embeddings.</p>
 <p>These embeddings extend the word embeddings to documents using a similar (CBOW) approach.
 Supports any attributes that gensim.models.doc2vec.Doc2Vec may need.</p>
@@ -295,7 +296,7 @@ pretrained model is not available.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Embedding.Random">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Random" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Random" title="Permalink to this definition"></a></dt>
 <dd><p>Randomized configuration of embeddings.</p>
 <p>Creates a random schema, including the possibility of having transformations and concatenations
 (and even recursive ones). The only restriction is that word vectors need to be pooled immediately within a transformation,
@@ -307,7 +308,7 @@ such as a word pooling (which has negative values) followed by NMF (which expect
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Embedding.TfIdf">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">TfIdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.TfIdf" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TfIdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.TfIdf" title="Permalink to this definition"></a></dt>
 <dd><p>TfIdf embeddings.</p>
 <p>Computes the frequency of words in each document, balances them with the inverse document frequency,
 and uses that as the representation. Supports any attributes that
@@ -316,7 +317,7 @@ sklearn.feature_extraction.text.TfidfVectorizer may need.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Embedding.USE">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">USE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.USE" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">USE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.USE" title="Permalink to this definition"></a></dt>
 <dd><p>Universal Sentence Encoder embeddings.</p>
 <p>Uses Google’s Universal Sentence Encoder model, which is in Tensorflow. As such,
 Tensorflow is a required dependency for using this model. Since the model is pre-built,
@@ -325,7 +326,7 @@ there are no parameters that can be passed in.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Embedding.Word">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word_option</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#textwiser.WordOptions" title="textwiser.options.WordOptions"><span class="pre">textwiser.options.WordOptions</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">WordOptions.word2vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inline_pool_option</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#textwiser.PoolOptions" title="textwiser.options.PoolOptions"><span class="pre">textwiser.options.PoolOptions</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Word" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word_option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#textwiser.WordOptions" title="textwiser.options.WordOptions"><span class="pre">WordOptions</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">WordOptions.word2vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretrained</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inline_pool_option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#textwiser.PoolOptions" title="textwiser.options.PoolOptions"><span class="pre">PoolOptions</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Embedding.Word" title="Permalink to this definition"></a></dt>
 <dd><p>Word embeddings.</p>
 <p>These include non-contextual Word2Vec models, such as the original skip-gram model,
 and the GloVe embeddings, and also contextual embeddings, such as BERT and ELMo.
@@ -420,13 +421,13 @@ following <code class="docutils literal notranslate"><span class="pre">Transform
 
 </section>
 <section id="transformation">
-<h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline"></a></h2>
+<h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Transformation">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">Transformation</span></span><a class="headerlink" href="#textwiser.Transformation" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">Transformation</span></span><a class="headerlink" href="#textwiser.Transformation" title="Permalink to this definition"></a></dt>
 <dd><dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Transformation.LDA">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">LDA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.LDA" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LDA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.LDA" title="Permalink to this definition"></a></dt>
 <dd><p>Latent Dirichlet Allocation Transformation.</p>
 <p>Finds topics with a Dirichlet prior and converts vectors into topic distributions.
 Supports any attributes that sklearn.decomposition.LatentDirichletAllocation may need.</p>
@@ -445,7 +446,7 @@ Supports any attributes that sklearn.decomposition.LatentDirichletAllocation may
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Transformation.NMF">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">NMF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.NMF" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NMF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.NMF" title="Permalink to this definition"></a></dt>
 <dd><p>NMF Transformation.</p>
 <p>Decomposes one nonnegative matrix H into nonnegative matrices U and V such that
 H = UV^T. Supports any attributes that sklearn.decomposition.NMF may need.</p>
@@ -464,7 +465,7 @@ H = UV^T. Supports any attributes that sklearn.decomposition.NMF may need.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Transformation.Pool">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pool_option</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#textwiser.PoolOptions" title="textwiser.options.PoolOptions"><span class="pre">textwiser.options.PoolOptions</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">PoolOptions.max</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.Pool" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pool_option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#textwiser.PoolOptions" title="textwiser.options.PoolOptions"><span class="pre">PoolOptions</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PoolOptions.max</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.Pool" title="Permalink to this definition"></a></dt>
 <dd><p>Pool Transformation.</p>
 <p>Pools a list of word embeddings into a single embedding. Should not be specified if <code class="docutils literal notranslate"><span class="pre">inline_pool_option</span></code>
 is specified for the corresponding word embedding.</p>
@@ -484,7 +485,7 @@ the maximum values for all features across the words.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Transformation.SVD">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">SVD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.SVD" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SVD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.SVD" title="Permalink to this definition"></a></dt>
 <dd><p>SVD Transformation.</p>
 <p>Decomposes a matrix M into matrices U, S, and V such that M=USV^T.
 S becomes the matrix of singular values, while U and V matrices are
@@ -505,7 +506,7 @@ Supports any attributes that sklearn.decomposition.SVD may need.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.Transformation.UMAP">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">UMAP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.UMAP" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UMAP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.Transformation.UMAP" title="Permalink to this definition"></a></dt>
 <dd><p>Uniform Manifold Approximation &amp; Projection Transformation</p>
 <p>Tries to model the manifold with a fuzzy topological structure.
 Supports any attributes that umap.UMAP may need.</p>
@@ -520,81 +521,92 @@ Supports any attributes that umap.UMAP may need.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="textwiser.Transformation.UMAP.random_state">
+<span class="sig-name descname"><span class="pre">random_state</span></span><a class="headerlink" href="#textwiser.Transformation.UMAP.random_state" title="Permalink to this definition"></a></dt>
+<dd><p>The random number seed. Use <code class="docutils literal notranslate"><span class="pre">None</span></code> to get non-reproducible results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Optional[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="wordoptions">
-<h2>WordOptions<a class="headerlink" href="#wordoptions" title="Permalink to this headline"></a></h2>
+<h2>WordOptions<a class="headerlink" href="#wordoptions" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.WordOptions">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">WordOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.WordOptions" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">WordOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.WordOptions" title="Permalink to this definition"></a></dt>
 <dd><p>Supported Word embedding options.</p>
 <p>For more detail about the options, please consult the readme.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.albert">
-<span class="sig-name descname"><span class="pre">albert</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'albert'</span></em><a class="headerlink" href="#textwiser.WordOptions.albert" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">albert</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'albert'</span></em><a class="headerlink" href="#textwiser.WordOptions.albert" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.bart">
-<span class="sig-name descname"><span class="pre">bart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'bart'</span></em><a class="headerlink" href="#textwiser.WordOptions.bart" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">bart</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bart'</span></em><a class="headerlink" href="#textwiser.WordOptions.bart" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.bert">
-<span class="sig-name descname"><span class="pre">bert</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'bert'</span></em><a class="headerlink" href="#textwiser.WordOptions.bert" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">bert</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bert'</span></em><a class="headerlink" href="#textwiser.WordOptions.bert" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.bytepair">
-<span class="sig-name descname"><span class="pre">bytepair</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'bytepair'</span></em><a class="headerlink" href="#textwiser.WordOptions.bytepair" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">bytepair</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bytepair'</span></em><a class="headerlink" href="#textwiser.WordOptions.bytepair" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.char">
-<span class="sig-name descname"><span class="pre">char</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'char'</span></em><a class="headerlink" href="#textwiser.WordOptions.char" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">char</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'char'</span></em><a class="headerlink" href="#textwiser.WordOptions.char" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.ctrl">
-<span class="sig-name descname"><span class="pre">ctrl</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'ctrl'</span></em><a class="headerlink" href="#textwiser.WordOptions.ctrl" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ctrl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ctrl'</span></em><a class="headerlink" href="#textwiser.WordOptions.ctrl" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.dialo_gpt">
-<span class="sig-name descname"><span class="pre">dialo_gpt</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'dialo_gpt'</span></em><a class="headerlink" href="#textwiser.WordOptions.dialo_gpt" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">dialo_gpt</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dialo_gpt'</span></em><a class="headerlink" href="#textwiser.WordOptions.dialo_gpt" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.distilbert">
-<span class="sig-name descname"><span class="pre">distilbert</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'distilbert'</span></em><a class="headerlink" href="#textwiser.WordOptions.distilbert" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">distilbert</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'distilbert'</span></em><a class="headerlink" href="#textwiser.WordOptions.distilbert" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.electra">
-<span class="sig-name descname"><span class="pre">electra</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'electra'</span></em><a class="headerlink" href="#textwiser.WordOptions.electra" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">electra</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'electra'</span></em><a class="headerlink" href="#textwiser.WordOptions.electra" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.elmo">
-<span class="sig-name descname"><span class="pre">elmo</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'elmo'</span></em><a class="headerlink" href="#textwiser.WordOptions.elmo" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">elmo</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'elmo'</span></em><a class="headerlink" href="#textwiser.WordOptions.elmo" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.flair">
-<span class="sig-name descname"><span class="pre">flair</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'flair'</span></em><a class="headerlink" href="#textwiser.WordOptions.flair" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">flair</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'flair'</span></em><a class="headerlink" href="#textwiser.WordOptions.flair" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.gpt">
-<span class="sig-name descname"><span class="pre">gpt</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'gpt'</span></em><a class="headerlink" href="#textwiser.WordOptions.gpt" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">gpt</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'gpt'</span></em><a class="headerlink" href="#textwiser.WordOptions.gpt" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.gpt2">
-<span class="sig-name descname"><span class="pre">gpt2</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'gpt2'</span></em><a class="headerlink" href="#textwiser.WordOptions.gpt2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">gpt2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'gpt2'</span></em><a class="headerlink" href="#textwiser.WordOptions.gpt2" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -610,87 +622,87 @@ Supports any attributes that umap.UMAP may need.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.longformer">
-<span class="sig-name descname"><span class="pre">longformer</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'longformer'</span></em><a class="headerlink" href="#textwiser.WordOptions.longformer" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">longformer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'longformer'</span></em><a class="headerlink" href="#textwiser.WordOptions.longformer" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.roberta">
-<span class="sig-name descname"><span class="pre">roberta</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'roberta'</span></em><a class="headerlink" href="#textwiser.WordOptions.roberta" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">roberta</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'roberta'</span></em><a class="headerlink" href="#textwiser.WordOptions.roberta" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.t5">
-<span class="sig-name descname"><span class="pre">t5</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'t5'</span></em><a class="headerlink" href="#textwiser.WordOptions.t5" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">t5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'t5'</span></em><a class="headerlink" href="#textwiser.WordOptions.t5" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.transformerXL">
-<span class="sig-name descname"><span class="pre">transformerXL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'transformerXL'</span></em><a class="headerlink" href="#textwiser.WordOptions.transformerXL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">transformerXL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'transformerXL'</span></em><a class="headerlink" href="#textwiser.WordOptions.transformerXL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.word2vec">
-<span class="sig-name descname"><span class="pre">word2vec</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'word2vec'</span></em><a class="headerlink" href="#textwiser.WordOptions.word2vec" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">word2vec</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'word2vec'</span></em><a class="headerlink" href="#textwiser.WordOptions.word2vec" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.xlm">
-<span class="sig-name descname"><span class="pre">xlm</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'xlm'</span></em><a class="headerlink" href="#textwiser.WordOptions.xlm" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">xlm</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'xlm'</span></em><a class="headerlink" href="#textwiser.WordOptions.xlm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.xlm_roberta">
-<span class="sig-name descname"><span class="pre">xlm_roberta</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'xlm_roberta'</span></em><a class="headerlink" href="#textwiser.WordOptions.xlm_roberta" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">xlm_roberta</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'xlm_roberta'</span></em><a class="headerlink" href="#textwiser.WordOptions.xlm_roberta" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.WordOptions.xlnet">
-<span class="sig-name descname"><span class="pre">xlnet</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'xlnet'</span></em><a class="headerlink" href="#textwiser.WordOptions.xlnet" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">xlnet</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'xlnet'</span></em><a class="headerlink" href="#textwiser.WordOptions.xlnet" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="pooloptions">
-<h2>PoolOptions<a class="headerlink" href="#pooloptions" title="Permalink to this headline"></a></h2>
+<h2>PoolOptions<a class="headerlink" href="#pooloptions" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="textwiser.PoolOptions">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">PoolOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.PoolOptions" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">PoolOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#textwiser.PoolOptions" title="Permalink to this definition"></a></dt>
 <dd><p>Supported pooling options.</p>
 <p>For more detail about the options, please consult the readme.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.PoolOptions.first">
-<span class="sig-name descname"><span class="pre">first</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'first'</span></em><a class="headerlink" href="#textwiser.PoolOptions.first" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">first</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'first'</span></em><a class="headerlink" href="#textwiser.PoolOptions.first" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.PoolOptions.last">
-<span class="sig-name descname"><span class="pre">last</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'last'</span></em><a class="headerlink" href="#textwiser.PoolOptions.last" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">last</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'last'</span></em><a class="headerlink" href="#textwiser.PoolOptions.last" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.PoolOptions.max">
-<span class="sig-name descname"><span class="pre">max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'max'</span></em><a class="headerlink" href="#textwiser.PoolOptions.max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">max</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'max'</span></em><a class="headerlink" href="#textwiser.PoolOptions.max" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.PoolOptions.mean">
-<span class="sig-name descname"><span class="pre">mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'mean'</span></em><a class="headerlink" href="#textwiser.PoolOptions.mean" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mean</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mean'</span></em><a class="headerlink" href="#textwiser.PoolOptions.mean" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="textwiser.PoolOptions.min">
-<span class="sig-name descname"><span class="pre">min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'min'</span></em><a class="headerlink" href="#textwiser.PoolOptions.min" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">min</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'min'</span></em><a class="headerlink" href="#textwiser.PoolOptions.min" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="device">
-<h2>device<a class="headerlink" href="#device" title="Permalink to this headline"></a></h2>
+<h2>device<a class="headerlink" href="#device" title="Permalink to this heading"></a></h2>
 <dl class="py data">
 <dt class="sig sig-object py" id="textwiser.device">
-<span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">device</span></span><em class="property"> <span class="pre">:torch.device</span></em><a class="headerlink" href="#textwiser.device" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">textwiser.</span></span><span class="sig-name descname"><span class="pre">device</span></span><em class="property"><span class="w"> </span><span class="pre">:torch.device</span></em><a class="headerlink" href="#textwiser.device" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>

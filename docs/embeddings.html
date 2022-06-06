@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Embeddings &mdash; TextWiser 1.3.2 documentation</title>
+  <title>Embeddings &mdash; TextWiser 1.4.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -77,7 +78,7 @@
            <div itemprop="articleBody">
              
   <section id="embeddings">
-<span id="id1"></span><h1>Embeddings<a class="headerlink" href="#embeddings" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1>Embeddings<a class="headerlink" href="#embeddings" title="Permalink to this heading"></a></h1>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -142,7 +143,7 @@
 </tr>
 <tr class="row-odd"><td><p>Word Embedding: <a class="reference external" href="https://github.com/zalandoresearch/flair/blob/master/resources/docs/embeddings/BYTE_PAIR_EMBEDDINGS.md">BytePair</a></p></td>
 <td><div class="line-block">
-<div class="line">Supported by these <a href="#id20"><span class="problematic" id="id21">`pretrained embeddings &lt;https://nlp.h-its.org/bpemb/#download&gt;&gt;`_</span></a></div>
+<div class="line">Supported by these <a class="reference external" href="https://nlp.h-its.org/bpemb/#download">pretrained embeddings</a></div>
 <div class="line">Pretrained options can be specified with the string <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;_&lt;dim&gt;_&lt;vocab_size&gt;</span></code></div>
 <div class="line">Default options can be omitted like <code class="docutils literal notranslate"><span class="pre">en</span></code>, <code class="docutils literal notranslate"><span class="pre">en_100</span></code>, or <code class="docutils literal notranslate"><span class="pre">en__10000</span></code></div>
 <div class="line">Defaults to <code class="docutils literal notranslate"><span class="pre">en</span></code>, which is equal to <code class="docutils literal notranslate"><span class="pre">en_100_10000</span></code></div>
@@ -278,7 +279,7 @@
 </tbody>
 </table>
 <section id="tokenization">
-<h2>Tokenization<a class="headerlink" href="#tokenization" title="Permalink to this headline"></a></h2>
+<h2>Tokenization<a class="headerlink" href="#tokenization" title="Permalink to this heading"></a></h2>
 <p>In general, text data should be <strong>whitespace-tokenized</strong> before being fed into TextWiser.</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">BOW</span></code>, <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code>, <code class="docutils literal notranslate"><span class="pre">TfIdf</span></code> and <code class="docutils literal notranslate"><span class="pre">Word</span></code> embeddings also accept an optional <code class="docutils literal notranslate"><span class="pre">tokenizer</span></code> parameter.</p></li>

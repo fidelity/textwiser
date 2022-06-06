@@ -434,7 +434,8 @@ class Transformation(NamedTuple):
         n_components: int
             The number of topics to use.
         random_state: Optional[int]
-            The random number seed. Use ``None`` to get non-reproducible results.
+            The random number seed. Use ``None`` to get non-reproducible results, which might be useful for
+            testing purposes.
         deterministic_init: bool
             Whether to initialize UMAP deterministically across operating systems. If ``False``, training a UMAP
             model in MacOS will lead to a different set of embeddings than in Ubuntu. If ``True``, the generated
