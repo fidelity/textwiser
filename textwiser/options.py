@@ -441,8 +441,8 @@ class Transformation(NamedTuple):
             embeddings will be the same. Requires ``random_state`` to be set to a value if ``True``.
         """
 
-        def __init__(self, n_components: int = 10, random_state: Optional[int] = 42, deterministic_init: bool = True,
-                     **kwargs):
+        def __init__(self, n_components: int = 10, random_state: Optional[int] = Constants.default_seed,
+                     deterministic_init: bool = True, **kwargs):
             self.n_components = n_components
             self.random_state = random_state
             self.deterministic_init = deterministic_init

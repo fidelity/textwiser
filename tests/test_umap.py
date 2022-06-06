@@ -12,9 +12,9 @@ class UMAPTest(BaseTest):
             tw = TextWiser(Embedding.TfIdf(min_df=1), Transformation.UMAP(deterministic_init=True, n_neighbors=2,
                                                                           n_components=2, n_jobs=1),
                            dtype=torch.float32)
-            expected = torch.tensor([[15.7280015945,  5.2040858269],
-                                     [16.6001987457,  5.5392651558],
-                                     [16.2846107483,  6.4412302971]], dtype=torch.float32)
+            expected = torch.tensor([[-2.3858237267, 10.1667022705],
+                                     [-3.3334095478,  9.7975702286],
+                                     [-2.8645665646,  8.9863948822]], dtype=torch.float32)
             self._test_fit_transform(tw, expected)
             self._reset_seed()
             self._test_fit_before_transform(tw, expected)
@@ -36,9 +36,9 @@ class UMAPTest(BaseTest):
             predicted = tw.fit_transform(docs)
 
             # Default result when seed is set
-            expected = torch.tensor([[15.7280015945,  5.2040858269],
-                                     [16.6001987457,  5.5392651558],
-                                     [16.2846107483,  6.4412302971]], dtype=torch.float32)
+            expected = torch.tensor([[-2.3858237267, 10.1667022705],
+                                     [-3.3334095478,  9.7975702286],
+                                     [-2.8645665646,  8.9863948822]], dtype=torch.float32)
             # The result should be different to comparing the default seed, ensuring randomness
             self.assertFalse(torch.allclose(predicted, expected.to(device), atol=1e-6))
         except ModuleNotFoundError:

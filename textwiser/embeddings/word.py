@@ -4,7 +4,6 @@
 from pathlib import Path
 from typing import Optional
 
-from allennlp.modules.elmo import Elmo, batch_to_ids
 from bpemb import BPEmb
 import flair
 from flair.data import Sentence
@@ -18,6 +17,12 @@ import re
 import torch
 import torch.nn as nn
 from transformers import AutoTokenizer, AutoModel, AutoConfig
+
+try:
+    from allennlp.modules.elmo import Elmo, batch_to_ids
+except ModuleNotFoundError:
+    pass
+
 
 from textwiser.base import BaseFeaturizer
 from textwiser.options import WordOptions, PoolOptions
