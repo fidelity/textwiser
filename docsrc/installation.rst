@@ -28,13 +28,15 @@ The library is based on PyTorch but it also relies on:
 * Spacy and it's ``en`` model are optional imports for OpenAI GPT; the model can be installed using ``python -m spacy download en``
 * Tensorflow is an optional import for Universal Sentence Encoder. If you want to use USE, make sure you satisfy ``tensorflow>=2.0.0`` and ``tensorflow-hub>=0.7.0``.
 * AllenNLP is an optional import for ELMo. If you want to use ELMo, make sure you satisfy ``allennlp``
-* UMAP is an optional import for UMAP transformation. If you want to use UMAP, make sure you satisfy ``umap-learn``
+* UMAP is an optional import for UMAP transformation. If you want to use UMAP, make sure you satisfy ``umap-learn>=0.5.1``
 
 PyPI
 ----
 
 TextWiser can be installed using ``pip install textwiser``, which will download the latest wheel from
 `PyPI <http://pypi.org/project/textwiser/>`_. This will also install all required dependencies.
+
+Alternatively, you can use ``pip install textwiser[full]`` to install TextWiser with all the optional dependencies.
 
 Source Code
 -----------
@@ -53,11 +55,11 @@ Alternatively, you can build a wheel package on your platform from scratch using
 
 Test Your Setup
 ---------------
-To confirm that installing the package was successful, run the first example in the :ref:`Quick Start<quick>`. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model.
+To confirm that installing the package was successful, run the first example in the :ref:`Quick Start<quick>`. To confirm that the whole installation was successful, run the tests and all should pass. When running the tests, it will download a 50MB pretrained model. Note that the ``PYTHONHASHSEED=0`` variable is necessary to ensure Doc2Vec training is reproducible - you do not need this if reproducibility is not important, or if you're not using Doc2Vec.
 
 .. code-block:: bash
 
-    python -m unittest discover -v tests
+    PYTHONHASHSEED=0 python -m unittest discover -v tests
 
 You can also set the ``TEST_WORD_EMBEDDINGS`` environmental variable to comma-separated word embeddings (ex: ``bert,flair``) to test them, or to ``all`` to test all possible word embeddings. Note that this will download all word embeddings, which is very time-consuming, and it assumes all optional requirements are satisfied.
 

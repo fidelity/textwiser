@@ -433,16 +433,37 @@ class Transformation(NamedTuple):
         ----------
         n_components: int
             The number of topics to use.
+        random_state: Optional[int]
+            The random number seed. Use ``None`` to get non-reproducible results, which might be useful for
+            testing purposes.
+        deterministic_init: bool
+            Whether to initialize UMAP deterministically across operating systems. If ``False``, training a UMAP
+            model in MacOS will lead to a different set of embeddings than in Ubuntu. If ``True``, the generated
+            embeddings will be the same. Requires ``random_state`` to be set to a value if ``True``.
         """
 
-        def __init__(self, n_components: int = 10, **kwargs):
+        def __init__(self, n_components: int = 10, random_state: Optional[int] = Constants.default_seed,
+                     deterministic_init: bool = True, **kwargs):
             self.n_components = n_components
+            self.random_state = random_state
+            self.deterministic_init = deterministic_init
             super().__init__(**kwargs)
 
         def _validate(self, finetune_enabled=False):
             import umap  # this will fail if umap is not available
             check_true(isinstance(self.n_components, int), TypeError("The number of components must be an integer."))
             check_true(self.n_components >= 2, ValueError("The number of components must be at least two."))
+            check_true(isinstance(self.n_components, int), TypeError("The number of components must be an integer."))
+            check_true(self.random_state is None or isinstance(self.random_state, int),
+                       TypeError("The random seed must be an integer or ``None``."))
+            check_true(isinstance(self.deterministic_init, bool),
+                       TypeError("The deterministic init parameter must be a boolean."))
+            check_true(not self.deterministic_init or self.random_state is not None,
+                       ValueError("If deterministic init parameter is ``True``, the random state must also be "
+                                  "specified."))
+            check_true(not self.deterministic_init or 'init' not in self.kwargs,
+                       ValueError("If deterministic init parameter is ``True``, you cannot pass an ``init``"
+                                  "parameter to UMAP"))
 
     class Pool(_ArgBase):
         """Pool Transformation.

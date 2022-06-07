@@ -22,7 +22,7 @@ Embeddings
     "Word Embedding: `Character <https://github.com/zalandoresearch/flair/blob/master/resources/docs/TUTORIAL_3_WORD_EMBEDDING.md#character-embeddings>`_", "| Initialized randomly and not pretrained
     | Useful when trained for a downstream task
     | Enable :ref:`fine-tuning<fine_tuning>` to get good embeddings"
-    "Word Embedding: `BytePair <https://github.com/zalandoresearch/flair/blob/master/resources/docs/embeddings/BYTE_PAIR_EMBEDDINGS.md>`_ ", "| Supported by these `pretrained embeddings <https://nlp.h-its.org/bpemb/#download>>`_
+    "Word Embedding: `BytePair <https://github.com/zalandoresearch/flair/blob/master/resources/docs/embeddings/BYTE_PAIR_EMBEDDINGS.md>`_ ", "| Supported by these `pretrained embeddings <https://nlp.h-its.org/bpemb/#download>`_
     | Pretrained options can be specified with the string ``<lang>_<dim>_<vocab_size>``
     | Default options can be omitted like ``en``, ``en_100``, or ``en__10000``
     | Defaults to ``en``, which is equal to ``en_100_10000``"

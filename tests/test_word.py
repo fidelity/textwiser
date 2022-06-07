@@ -131,12 +131,12 @@ class WordTest(BaseTest):
 
     def test_word2vec_fit(self):
         """The word2vec embeddings should be trainable from scratch."""
-        tw = TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained=None,
-                                      seed=1234, size=2, min_count=1, workers=1, sample=0, negative=0, hashfxn=self.hash),
+        tw = TextWiser(Embedding.Word(word_option=WordOptions.word2vec, pretrained=None, seed=1234, vector_size=2,
+                                      min_count=1, workers=1, sample=0, negative=0, hashfxn=self.hash),
                        Transformation.Pool(pool_option=PoolOptions.max), dtype=torch.float32)
-        expected = torch.tensor([[0.1895588636, 0.0169422124],
-                                 [0.1895588636, 0.0554456040],
-                                 [0.1917538643, 0.2023087442]], dtype=torch.float32)
+        expected = torch.tensor([[0.4879405499, 0.4640791416],
+                                 [0.4879405499, 0.4766997099],
+                                 [0.4793506861, 0.4766997099]], dtype=torch.float32)
         self._test_fit_transform(tw, expected)
 
     def test_tokenizer_validation(self):
@@ -292,9 +292,10 @@ class WordTest(BaseTest):
             emb_params = embedding_params.get(o, dict())
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
-                tw = TextWiser(Embedding.Word(word_option=o, **emb_params), dtype=torch.float32, **tw_params).fit()
-                tw.transform(docs)
-                tw.transform(long_doc)
+                tw = TextWiser(Embedding.Word(word_option=o, **emb_params),
+                               Transformation.Pool(pool_option=PoolOptions.max), dtype=torch.float32, **tw_params).fit()
+                self.assertTrue(isinstance(tw.transform(docs), torch.Tensor))
+                self.assertTrue(isinstance(tw.transform(long_doc), torch.Tensor))
                 print('ok', flush=True)
 
     def test_inline_pool(self):

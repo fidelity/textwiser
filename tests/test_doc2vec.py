@@ -23,10 +23,11 @@ def det_hash(x):
 class Doc2VecTest(BaseTest):
 
     def test_fit_transform(self):
-        tw = TextWiser(Embedding.Doc2Vec(seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=0, hashfxn=det_hash), dtype=torch.float32)
-        expected = torch.tensor([[0.0471987687, 0.0309393797],
-                                 [-0.0278387405, -0.2347375602],
-                                 [0.1042766869, -0.0033877781]], dtype=torch.float32)
+        tw = TextWiser(Embedding.Doc2Vec(seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=0,
+                                         hashfxn=det_hash), dtype=torch.float32)
+        expected = torch.tensor([[0.1922276616,  0.2392318249],
+                                 [-0.0607281923,  0.0164829195],
+                                 [0.0748119354, -0.0934505463]], dtype=torch.float32)
         self._test_fit_transform(tw, expected)
 
     def test_deterministic_transform(self):
@@ -37,9 +38,9 @@ class Doc2VecTest(BaseTest):
         """
         tw = TextWiser(Embedding.Doc2Vec(deterministic=True, seed=1234, vector_size=2, min_count=1, workers=1, sample=0,
                                          negative=0, hashfxn=det_hash), dtype=torch.float32)
-        expected = torch.tensor([[0.0471987687, 0.0309393797],
-                                 [-0.0278387405, -0.2347375602],
-                                 [0.1042766869, -0.0033877781]], dtype=torch.float32)
+        expected = torch.tensor([[0.1922276616,  0.2392318249],
+                                 [-0.0607281923,  0.0164829195],
+                                 [0.0748119354, -0.0934505463]], dtype=torch.float32)
         self._test_fit_before_transform(tw, expected)
         tw = TextWiser(Embedding.Doc2Vec(pretrained=None, deterministic=True, seed=1234, vector_size=2, min_count=1,
                                          workers=1, sample=0, negative=0, hashfxn=det_hash), dtype=torch.float32)
@@ -63,9 +64,9 @@ class Doc2VecTest(BaseTest):
 
     def test_pretrained(self):
         tw = TextWiser(Embedding.Doc2Vec(deterministic=True, seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=0, hashfxn=det_hash), dtype=torch.float32)
-        expected = torch.tensor([[0.0471987687, 0.0309393797],
-                                 [-0.0278387405, -0.2347375602],
-                                 [0.1042766869, -0.0033877781]], dtype=torch.float32)
+        expected = torch.tensor([[0.1922276616,  0.2392318249],
+                                 [-0.0607281923,  0.0164829195],
+                                 [0.0748119354, -0.0934505463]], dtype=torch.float32)
         self._test_fit_before_transform(tw, expected)
         # Test loading from bytes
         with NamedTemporaryFile() as file:

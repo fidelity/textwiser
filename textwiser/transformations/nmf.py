@@ -34,3 +34,17 @@ class _ScikitTransformation(_BaseTransformation):
 
 class _NMFTransformation(_ScikitTransformation):
     Model = NMF
+
+    def _init_model(self, x: np.ndarray):
+        if self.init_args['n_components'] <= min(x.shape[0], x.shape[1]) and 'init' not in self.init_args:
+            # Use the old default from before sklearn 1.1 for backwards compat
+            return self.Model(**self.init_args, init='nndsvd')
+        return self.Model(**self.init_args)
+
+    def _fit(self, x, y=None):
+        self.model = self._init_model(x)
+        self.model.fit(x, convert(y, OutputType.array))
+
+    def _fit_transform(self, x, y=None):
+        self.model = self._init_model(x)
+        return self.model.fit_transform(x, convert(y, OutputType.array)).astype(np.float32)

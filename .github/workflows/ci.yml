@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - master
+  schedule:
+    - cron: '25 16 * * 1' # Schedule at 16:25 UTC on Mondays, which is midday in EST
 
 jobs:
   Test:
@@ -24,7 +26,6 @@ jobs:
       - name: Check
         shell: bash
         run: |
-          python3 -m pip install --upgrade pip
-          pip install -e .
-          python3 -m unittest discover -v tests
-          python3 setup.py install
+          python3 -m pip install --upgrade pip wheel
+          pip3 install -e .[full]
+          PYTHONHASHSEED=0 TEST_WORD_EMBEDDINGS=bert,elmo python3 -m unittest discover -v tests
