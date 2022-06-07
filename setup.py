@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 with open("requirements.txt") as fh:
     required = fh.read().splitlines()
 
-with open("full_requirements.txt") as fh:
+with open("requirements_full.txt") as fh:
     full_reqs = fh.read().splitlines()
 
 with open(os.path.join('textwiser', '_version.py')) as fp:

@@ -7,12 +7,16 @@ Mar 03, 2022 1.4.0
 -------------------------------------------------------------------------------
 major:
 - Update UMAP to return deterministic output in latest version
+  Source: https://github.com/fidelity/textwiser/blob/39bad042104c41d0d57174b49941882af79cc3db/textwiser/transformations/umap_.py#L23
 - Update SVD to return deterministic output
+  Source: https://github.com/fidelity/textwiser/blob/39bad042104c41d0d57174b49941882af79cc3db/textwiser/transformations/svd.py#L26
 - Update Word2Vec and Doc2Vec with latest gensim training
+  Source: https://github.com/fidelity/textwiser/blob/39bad042104c41d0d57174b49941882af79cc3db/textwiser/embeddings/word.py#L204
+  Source: https://github.com/fidelity/textwiser/blob/39bad042104c41d0d57174b49941882af79cc3db/textwiser/embeddings/doc2vec.py#L25
 
 minor:
 - Disable non-relevant transformers warning
-- Add full requirement install option (see full_requirements.txt)
+- Add full requirement install option (see requirements_full.txt)
 - Make gensim requirement explicit instead of relying on flair's dependency tree
 - Directly utilize ELMo from allennlp instead of flair by bumping allennlp requirement
 
