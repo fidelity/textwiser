@@ -271,6 +271,7 @@ class WordTest(BaseTest):
             WordOptions.char: {'is_finetuneable': True},
         }
         embedding_params = {
+            WordOptions.elmo: {'output_layer': "elmo"},
             WordOptions.xlnet: {'pretrained': 'xlnet-base-cased'},
         }
         print()
@@ -280,9 +281,11 @@ class WordTest(BaseTest):
                 continue
             if o == WordOptions.elmo:
                 try:
-                    import allennlp
+                    import tensorflow
+                    import tensorflow_hub
                 except ModuleNotFoundError:
-                    print("%s only works with AllenNLP installed. Skipping the test. ..." % o, flush=True)
+                    print("%s only works with Tensorflow and TensorflowHub installed. "
+                          "Skipping the test. ..." % o, flush=True)
                     continue
             if o == WordOptions.transformerXL and packaging.version.parse(torch.__version__) < packaging.version.parse('1.2'):
                 print("%s only works with PyTorch >= 1.2. Skipping the test. ..." % o, flush=True)

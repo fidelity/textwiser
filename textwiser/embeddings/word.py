@@ -13,13 +13,15 @@ from flair.embeddings import (
     CharacterEmbeddings,
 )
 from gensim.models import Word2Vec
+import numpy as np
 import re
 import torch
 import torch.nn as nn
 from transformers import AutoTokenizer, AutoModel, AutoConfig
 
 try:
-    from allennlp.modules.elmo import Elmo, batch_to_ids
+    import tensorflow as tf
+    import tensorflow_hub as hub
 except ModuleNotFoundError:
     pass
 
@@ -50,28 +52,13 @@ def transformers_loader(pretrained, **kwargs):
     return AutoTokenizer.from_pretrained(pretrained), AutoModel.from_pretrained(pretrained, config=config).to(device)
 
 
-def elmo_loader(pretrained: str):
-    # Replicate Flair loader
-    if pretrained == 'original':
-        options_file = "https://allennlp.s3.amazonaws.com/models/elmo/2x4096_512_2048cnn_2xhighway/elmo_2x4096_512_2048cnn_2xhighway_options.json"  # pylint: disable=line-too-long
-        weight_file = "https://allennlp.s3.amazonaws.com/models/elmo/2x4096_512_2048cnn_2xhighway/elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5"  # pylint: disable=line-too-long
-    elif pretrained == "small":
-        options_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x1024_128_2048cnn_1xhighway/elmo_2x1024_128_2048cnn_1xhighway_options.json"
-        weight_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x1024_128_2048cnn_1xhighway/elmo_2x1024_128_2048cnn_1xhighway_weights.hdf5"
-    elif pretrained == "medium":
-        options_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x2048_256_2048cnn_1xhighway/elmo_2x2048_256_2048cnn_1xhighway_options.json"
-        weight_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x2048_256_2048cnn_1xhighway/elmo_2x2048_256_2048cnn_1xhighway_weights.hdf5"
-    elif pretrained in ["large", "5.5B"]:
-        options_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway_5.5B/elmo_2x4096_512_2048cnn_2xhighway_5.5B_options.json"
-        weight_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway_5.5B/elmo_2x4096_512_2048cnn_2xhighway_5.5B_weights.hdf5"
-    elif pretrained == "pubmed":
-        options_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/contributed/pubmed/elmo_2x4096_512_2048cnn_2xhighway_options.json"
-        weight_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/contributed/pubmed/elmo_2x4096_512_2048cnn_2xhighway_weights_PubMed_only.hdf5"
-    else:
-        raise ValueError(f"Unknown ELMo embedding specified: {pretrained}")
-
-    model = Elmo(options_file=options_file, weight_file=weight_file,
-                 num_output_representations=1, requires_grad=False).to(device)
+def elmo_loader(pretrained: str, output_layer: str = "word_emb"):
+    if output_layer not in ('word_emb', 'lstm_outputs1', 'lstm_outputs2', 'elmo'):
+        raise ValueError(f"Invalid output layer: {output_layer}")
+    model = hub.KerasLayer(pretrained,
+                           trainable=False,
+                           signature="default",
+                           output_key=output_layer)
     return model
 
 
@@ -148,7 +135,7 @@ default_pretrained_options = {
     WordOptions.bytepair: 'en',
     WordOptions.word2vec: 'en',
     WordOptions.flair: 'news-forward-fast',
-    WordOptions.elmo: 'original',
+    WordOptions.elmo: 'https://tfhub.dev/google/elmo/3',
     WordOptions.bert: 'bert-base-uncased',
     WordOptions.gpt: 'openai-gpt',
     WordOptions.gpt2: 'gpt2-medium',
@@ -265,12 +252,8 @@ class _WordEmbeddings(BaseFeaturizer):
             elif self.word_option is WordOptions.bytepair:
                 res = self.model(self.tokenizer(doc, self.vocab))
             elif self.word_option is WordOptions.elmo:
-                # Split using whitespace
-                doc = self.tokenizer(doc)
-                # Convert into ids
-                doc = batch_to_ids([doc])
-                # Get embeddings
-                res = torch.squeeze(self.model(doc)['elmo_representations'][0])
+                embeddings = self.model(tf.constant(self.tokenizer(doc)))
+                res = np.squeeze(embeddings.numpy())
             elif self.word_option.is_from_transformers():
                 if self.word_option == WordOptions.dialo_gpt:
                     encoded_inputs = self.tokenizer(doc, truncation=True, max_length=1024, return_tensors="pt")  # The max length for DialoGPT isn't properly configured
