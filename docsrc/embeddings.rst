@@ -26,7 +26,7 @@ Embeddings
     | Pretrained options can be specified with the string ``<lang>_<dim>_<vocab_size>``
     | Default options can be omitted like ``en``, ``en_100``, or ``en__10000``
     | Defaults to ``en``, which is equal to ``en_100_10000``"
-    "Word Embedding: `ELMo <https://github.com/zalandoresearch/flair/blob/master/resources/docs/embeddings/ELMO_EMBEDDINGS.md>`_", "| Supported by these `pretrained embeddings <https://github.com/zalandoresearch/flair/blob/master/resources/docs/embeddings/ELMO_EMBEDDINGS.md>`_ from `AllenNLP <https://allennlp.org>`_
+    "Word Embedding: `ELMo <https://tfhub.dev/google/elmo/3>`_", "| Supported by these `options <https://tfhub.dev/google/elmo/3>`_
     | Defaults to ``original``"
     "Word Embedding: `Flair <https://github.com/zalandoresearch/flair/blob/master/resources/docs/embeddings/FLAIR_EMBEDDINGS.md>`_", "| Supported by these `pretrained embeddings <https://github.com/zalandoresearch/flair/blob/master/resources/docs/embeddings/FLAIR_EMBEDDINGS.md>`_
     | Defaults to ``news-forward-fast``"

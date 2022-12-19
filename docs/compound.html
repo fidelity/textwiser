@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compound Embedding &mdash; TextWiser 1.4.0 documentation</title>
+  <title>Compound Embedding &mdash; TextWiser 1.4.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,7 +14,6 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -79,7 +78,7 @@
            <div itemprop="articleBody">
              
   <section id="compound-embedding">
-<span id="compound"></span><h1>Compound Embedding<a class="headerlink" href="#compound-embedding" title="Permalink to this heading"></a></h1>
+<span id="compound"></span><h1>Compound Embedding<a class="headerlink" href="#compound-embedding" title="Permalink to this headline"></a></h1>
 <p>A unique research contribution of TextWiser lies in its novel approach in creating embeddings from components, called the Compound Embedding. This method allows forming arbitrarily complex embeddings, thanks to a context-free grammar that defines a formal language for valid text featurization.</p>
 <p>The compound embedding is instantiated using a schema which applies two main production rules:</p>
 <ul class="simple">
@@ -88,7 +87,7 @@
 </ul>
 <p>More formally, the compound schemas are defined by the following <a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar">context-free grammar</a>:</p>
 <section id="a-context-free-grammar-of-embeddings">
-<span id="cfg"></span><h2>A Context-Free Grammar of Embeddings<a class="headerlink" href="#a-context-free-grammar-of-embeddings" title="Permalink to this heading"></a></h2>
+<span id="cfg"></span><h2>A Context-Free Grammar of Embeddings<a class="headerlink" href="#a-context-free-grammar-of-embeddings" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>start → embed_like | merge
 
 embed_like → embed_option | &quot;[&quot; embed_option &quot;,&quot; dict &quot;]&quot;
@@ -163,7 +162,7 @@ Note that the <code class="docutils literal notranslate"><span class="pre">dict<
 A sample implementation of <code class="docutils literal notranslate"><span class="pre">dict</span></code> can be found <a class="reference external" href="https://github.com/lark-parser/lark/blob/master/docs/json_tutorial.md">here</a>.</p>
 </section>
 <section id="example-compound-schema">
-<h2>Example Compound Schema<a class="headerlink" href="#example-compound-schema" title="Permalink to this heading"></a></h2>
+<h2>Example Compound Schema<a class="headerlink" href="#example-compound-schema" title="Permalink to this headline"></a></h2>
 <p>Consider a compound embedding that achieves the following:
 * creates a <code class="docutils literal notranslate"><span class="pre">word2vec</span></code> embedding which is then <code class="docutils literal notranslate"><span class="pre">max</span></code> pooled to document level
 * creates a <code class="docutils literal notranslate"><span class="pre">flair</span></code> embedding  which is then <code class="docutils literal notranslate"><span class="pre">mean</span></code> pooled to document level
