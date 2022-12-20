@@ -30,7 +30,7 @@ class _BaseTransformation(BaseFeaturizer):
         return OutputType.tensor,
 
     def _check_input(self, x):
-        if not isinstance(x, tuple(t.value for t in self.input_types)):
+        if not isinstance(x, tuple(t.value for t in self.input_types)) or isinstance(x, np.matrix):
             return convert(x, self.input_types[0])
         return x
 
