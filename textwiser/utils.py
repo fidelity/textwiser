@@ -86,15 +86,15 @@ def convert(arr, typ: OutputType, dtype=None, detach=False):
             return arr
         # numpy to numpy
         if dtype is not None and arr.dtype != dtype:
-            return arr.astype(dtype)
-        return arr
+            return np.asarray(arr.astype(dtype))
+        return np.asarray(arr)
     elif isinstance(arr, spmatrix):
         # sparse to numpy
         if issubclass(typ.value, np.ndarray):
             arr = np.array(arr.todense())
             if dtype is not None and arr.dtype != dtype:
-                return arr.astype(dtype)
-            return arr
+                return np.asarray(arr.astype(dtype))
+            return np.asarray(arr)
         # sparse to torch
         elif issubclass(typ.value, torch.Tensor):
             arr = torch.from_numpy(arr.todense()).to(device)
@@ -110,8 +110,8 @@ def convert(arr, typ: OutputType, dtype=None, detach=False):
         if issubclass(typ.value, np.ndarray):
             arr = arr.detach().cpu().numpy()
             if dtype is not None and arr.dtype != dtype:
-                return arr.astype(dtype)
-            return arr
+                return np.asarray(arr.astype(dtype))
+            return np.asarray(arr)
         # torch to sparse
         elif issubclass(typ.value, spmatrix):
             arr = csr_matrix(arr.detach().cpu().numpy())

@@ -370,6 +370,11 @@ class Embedding(NamedTuple):
             check_true(not self.inline_pool_option or isinstance(self.inline_pool_option, PoolOptions),
                        ValueError("Inline pooling should either be None or a pool option."))
 
+            if self.word_option == WordOptions.elmo:
+                import tensorflow  # this will fail if tensorflow is not available
+                import tensorflow_hub  # this will fail if tensorflow_hub is not available
+                check_true(self.pretrained, ValueError("ELMo needs to be pretrained."))
+
             if self.tokenizer:
                 check_true(self.word_option == WordOptions.word2vec,
                            ValueError("The tokenizer can only be used if word2vec embeddings are used."))

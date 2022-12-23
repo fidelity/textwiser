@@ -26,8 +26,7 @@ The library is based on PyTorch but it also relies on:
 * Flair for word vectors
 * Transformers for contextual word vectors
 * Spacy and it's ``en`` model are optional imports for OpenAI GPT; the model can be installed using ``python -m spacy download en``
-* Tensorflow is an optional import for Universal Sentence Encoder. If you want to use USE, make sure you satisfy ``tensorflow>=2.0.0`` and ``tensorflow-hub>=0.7.0``.
-* AllenNLP is an optional import for ELMo. If you want to use ELMo, make sure you satisfy ``allennlp``
+* Tensorflow is an optional import for Universal Sentence Encoder and ELMo. If you want to use USE or ELMo, make sure you satisfy ``tensorflow>=2.0.0`` and ``tensorflow-hub>=0.7.0``.
 * UMAP is an optional import for UMAP transformation. If you want to use UMAP, make sure you satisfy ``umap-learn>=0.5.1``
 
 PyPI
