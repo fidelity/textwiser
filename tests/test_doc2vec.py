@@ -43,8 +43,9 @@ class Doc2VecTest(BaseTest):
                                  [0.0748119354, -0.0934505463]], dtype=torch.float32)
         self._test_fit_before_transform(tw, expected)
         tw = TextWiser(Embedding.Doc2Vec(pretrained=None, deterministic=True, seed=1234, vector_size=2, min_count=1,
-                                         workers=1, sample=0, negative=0, hashfxn=det_hash), dtype=torch.float32)
+                                         workers=1, sample=0, negative=5, hashfxn=det_hash), dtype=torch.float32)
         self._test_fit_before_transform(tw, expected)
+        print('ppp')
 
 
     def test_tokenizer_validation(self):
