@@ -23,7 +23,7 @@ def det_hash(x):
 class Doc2VecTest(BaseTest):
 
     def test_fit_transform(self):
-        tw = TextWiser(Embedding.Doc2Vec(seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=0,
+        tw = TextWiser(Embedding.Doc2Vec(seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=5,
                                          hashfxn=det_hash), dtype=torch.float32)
         expected = torch.tensor([[0.1922276616,  0.2392318249],
                                  [-0.0607281923,  0.0164829195],
@@ -37,7 +37,7 @@ class Doc2VecTest(BaseTest):
         This test makes sure we can get a deterministic result when necessary.
         """
         tw = TextWiser(Embedding.Doc2Vec(deterministic=True, seed=1234, vector_size=2, min_count=1, workers=1, sample=0,
-                                         negative=0, hashfxn=det_hash), dtype=torch.float32)
+                                         negative=5, hashfxn=det_hash), dtype=torch.float32)
         expected = torch.tensor([[0.1922276616,  0.2392318249],
                                  [-0.0607281923,  0.0164829195],
                                  [0.0748119354, -0.0934505463]], dtype=torch.float32)
@@ -63,7 +63,7 @@ class Doc2VecTest(BaseTest):
             TextWiser(Embedding.Doc2Vec(tokenizer=lambda doc: [1]))
 
     def test_pretrained(self):
-        tw = TextWiser(Embedding.Doc2Vec(deterministic=True, seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=0, hashfxn=det_hash), dtype=torch.float32)
+        tw = TextWiser(Embedding.Doc2Vec(deterministic=True, seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=5, hashfxn=det_hash), dtype=torch.float32)
         expected = torch.tensor([[0.1922276616,  0.2392318249],
                                  [-0.0607281923,  0.0164829195],
                                  [0.0748119354, -0.0934505463]], dtype=torch.float32)
