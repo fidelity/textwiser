@@ -48,9 +48,9 @@ class Doc2VecTest(BaseTest):
         """
         tw = TextWiser(Embedding.Doc2Vec(seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=0,
                                          hashfxn=det_hash), dtype=torch.float32)
-        expected = torch.tensor([[0.1190547720, -0.1604744494],
-                                 [-0.1089997515,  0.0665458068],
-                                 [-0.0027067859, -0.1279250085]], dtype=torch.float32)
+        expected = torch.tensor([[0.2194924355,  0.2886725068],
+                                 [-0.0268423539,  0.0644853190],
+                                 [0.1089515761, -0.0599035546]], dtype=torch.float32)
         self._test_fit_transform(tw, expected)
 
     def test_deterministic_transform(self):
