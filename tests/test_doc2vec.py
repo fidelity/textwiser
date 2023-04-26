@@ -5,6 +5,7 @@ import os
 import pickle
 from tempfile import NamedTemporaryFile
 import torch
+import unittest
 
 from textwiser import TextWiser, Embedding, device
 from tests.test_base import BaseTest, docs
@@ -23,11 +24,33 @@ def det_hash(x):
 class Doc2VecTest(BaseTest):
 
     def test_fit_transform(self):
+        tw = TextWiser(Embedding.Doc2Vec(seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=5,
+                                         hashfxn=det_hash), dtype=torch.float32)
+        expected = torch.tensor([[0.2194924355,  0.2886725068],
+                                 [-0.0268423539,  0.0644853190],
+                                 [0.1089515761, -0.0599035546]], dtype=torch.float32)
+        self._test_fit_transform(tw, expected)
+
+    @unittest.skip("Test fails due to downstream library behavior, Gensim")
+    def test_fit_transform_neg_0(self):
+        """
+        This test fails and will be skipped due to negative sampling value being set to 0 for Doc2Vec.
+        We must set either 'hs' (hierarchical softmax) or 'negative' to be positive for proper training.
+
+        The default values for hs and negative are 0 and 5 respectively.When both 'hs=0' and 'negative=0', there will
+        be no training.
+
+        The reason being Doc2Vec do not update word embeddings if negative keyword is set to 0.
+        So, in order to mitigate this, the contributors added a sanity check to the hs and negative arguments
+        which checks if both hs and negative are set to 0 and throws the above error.
+
+        Here is the approved PR in the Gensim Library for the above check- RaRe-Technologies/gensim#3443
+        """
         tw = TextWiser(Embedding.Doc2Vec(seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=0,
                                          hashfxn=det_hash), dtype=torch.float32)
-        expected = torch.tensor([[0.1922276616,  0.2392318249],
-                                 [-0.0607281923,  0.0164829195],
-                                 [0.0748119354, -0.0934505463]], dtype=torch.float32)
+        expected = torch.tensor([[0.2194924355,  0.2886725068],
+                                 [-0.0268423539,  0.0644853190],
+                                 [0.1089515761, -0.0599035546]], dtype=torch.float32)
         self._test_fit_transform(tw, expected)
 
     def test_deterministic_transform(self):
@@ -37,13 +60,13 @@ class Doc2VecTest(BaseTest):
         This test makes sure we can get a deterministic result when necessary.
         """
         tw = TextWiser(Embedding.Doc2Vec(deterministic=True, seed=1234, vector_size=2, min_count=1, workers=1, sample=0,
-                                         negative=0, hashfxn=det_hash), dtype=torch.float32)
-        expected = torch.tensor([[0.1922276616,  0.2392318249],
-                                 [-0.0607281923,  0.0164829195],
-                                 [0.0748119354, -0.0934505463]], dtype=torch.float32)
+                                         negative=5, hashfxn=det_hash), dtype=torch.float32)
+        expected = torch.tensor([[0.2203897089,  0.2896924317],
+                                 [-0.0264264140,  0.0707252845],
+                                 [0.1079177931, -0.0554158054]], dtype=torch.float32)
         self._test_fit_before_transform(tw, expected)
         tw = TextWiser(Embedding.Doc2Vec(pretrained=None, deterministic=True, seed=1234, vector_size=2, min_count=1,
-                                         workers=1, sample=0, negative=0, hashfxn=det_hash), dtype=torch.float32)
+                                         workers=1, sample=0, negative=5, hashfxn=det_hash), dtype=torch.float32)
         self._test_fit_before_transform(tw, expected)
 
 
@@ -63,10 +86,10 @@ class Doc2VecTest(BaseTest):
             TextWiser(Embedding.Doc2Vec(tokenizer=lambda doc: [1]))
 
     def test_pretrained(self):
-        tw = TextWiser(Embedding.Doc2Vec(deterministic=True, seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=0, hashfxn=det_hash), dtype=torch.float32)
-        expected = torch.tensor([[0.1922276616,  0.2392318249],
-                                 [-0.0607281923,  0.0164829195],
-                                 [0.0748119354, -0.0934505463]], dtype=torch.float32)
+        tw = TextWiser(Embedding.Doc2Vec(deterministic=True, seed=1234, vector_size=2, min_count=1, workers=1, sample=0, negative=5, hashfxn=det_hash), dtype=torch.float32)
+        expected = torch.tensor([[0.2203897089,  0.2896924317],
+                                 [-0.0264264140,  0.0707252845],
+                                 [0.1079177931, -0.0554158054]], dtype=torch.float32)
         self._test_fit_before_transform(tw, expected)
         # Test loading from bytes
         with NamedTemporaryFile() as file:
