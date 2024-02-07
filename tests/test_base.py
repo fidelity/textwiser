@@ -29,6 +29,10 @@ class BaseTest(unittest.TestCase):
         predicted = tw_model.fit_transform(docs)
         # torch.set_printoptions(precision=10)
         # print(predicted)
+        if not torch.allclose(predicted, expected.to(device), atol=atol):
+            print(predicted)
+            print(expected.to(device))
+            print(atol)
         self.assertTrue(torch.allclose(predicted, expected.to(device), atol=atol))
 
     def _test_fit_before_transform(self, tw_model, expected, atol=1e-6):
