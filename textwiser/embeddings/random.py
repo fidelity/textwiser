@@ -38,7 +38,7 @@ def random_bow(df_scale=0.1, **kwargs):
         'max_df': 1 - expon.rvs(loc=0, scale=df_scale, size=1).item(),  # max % of times a term can be found
         'min_df': expon.rvs(loc=0, scale=df_scale, size=1).item(),  # min % of times a term can be found
         # 'max_features':  # not sure how to randomly pick this
-        'binary': bernoulli.rvs(0.2, size=1).item(),  # whether to make bow binary
+        'binary': bool(bernoulli.rvs(0.2, size=1).item()),  # whether to make bow binary
     })
 
 
@@ -59,7 +59,7 @@ def random_tfidf(df_scale=0.1, **kwargs):
         'max_df': 1 - expon.rvs(loc=0, scale=df_scale, size=1).item(),  # max # of times a term can be found
         'min_df': expon.rvs(loc=0, scale=df_scale, size=1).item(),  # min # of times a term can be found
         # 'max_features':  # not sure how to randomly pick this
-        'binary': bernoulli.rvs(0.2, size=1).item(),  # whether to make bow binary
+        'binary': bool(bernoulli.rvs(0.2, size=1).item()),  # whether to make bow binary
         'norm': np.random.choice(['l2', 'l1', None], p=[0.8, 0.15, 0.05]),  # how to normalize the vectors
     })
 
