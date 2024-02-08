@@ -25,7 +25,7 @@ class BaseTest(unittest.TestCase):
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
 
-    def _test_fit_transform(self, tw_model, expected, atol=1e-6):
+    def _test_fit_transform(self, tw_model, expected, atol=1e-7):
         predicted = tw_model.fit_transform(docs)
         # torch.set_printoptions(precision=10)
         # print(predicted)
