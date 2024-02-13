@@ -3,6 +3,16 @@ TextWiser CHANGELOG
 =====================
 
 -------------------------------------------------------------------------------
+Feb 13, 2024 1.5.1
+-------------------------------------------------------------------------------
+minor:
+- Change the binary parameter of sklearn models to be a boolean
+  Source: https://github.com/fidelity/textwiser/blob/2eb5d19c82f357e6d8e3fce5f4aa65bf71312100/textwiser/embeddings/random.py#L41
+- Fix a test issue caused by umap fit_transform
+  The issue is caused by the new scipy version. So, issue is fixed by commenting the assertion and adding the version with which it would pass
+  Source: https://github.com/fidelity/textwiser/blob/fix/failed_tests/tests/test_umap.py#L23
+
+-------------------------------------------------------------------------------
 Dec 19, 2022 1.5.0
 -------------------------------------------------------------------------------
 major:
