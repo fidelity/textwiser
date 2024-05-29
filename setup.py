@@ -23,11 +23,11 @@ setuptools.setup(
     url="https://github.com/fidelity/textwiser",
     packages=setuptools.find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     install_requires=required,
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     extras_require={"full": full_reqs},
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.8",
         "Operating System :: OS Independent",
     ],
     project_urls={
