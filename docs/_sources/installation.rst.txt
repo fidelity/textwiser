@@ -15,7 +15,7 @@ Installation
 Requirements
 ------------
 
-The library requires Python **3.6+**. The ``requirements.txt`` lists the necessary packages.
+The library requires Python **3.8+**. The ``requirements.txt`` lists the necessary packages.
 It is **strongly recommended** to install PyTorch following the `PyTorch installation instructions <https://pytorch.org/get-started/locally/>`_ before installing TextWiser.
 Otherwise, you might get stuck with a CPU-only version.
 Once PyTorch is installed, you can install the requirements using ``pip install -r requirements.txt``.
