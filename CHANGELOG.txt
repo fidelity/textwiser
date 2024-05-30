@@ -3,6 +3,17 @@ TextWiser CHANGELOG
 =====================
 
 -------------------------------------------------------------------------------
+May 30, 2024 2.0.0
+-------------------------------------------------------------------------------
+major:
+- Update CI test environment to Python 3.8, 3.9, 3.10, 3.11 and drop 3.7
+- Remove support for Python 3.6 and Python 3.7
+- Fix scipy version temporarily until `gensim` releases a patch for the following issue
+  Source: https://github.com/piskvorky/gensim/issues/3525
+- Temporarily commented three tests in `test_doc2vec.py` for the same reason above
+  Source: https://github.com/fidelity/textwiser/blob/master/tests/test_doc2vec.py
+
+-------------------------------------------------------------------------------
 Feb 13, 2024 1.5.1
 -------------------------------------------------------------------------------
 minor:
