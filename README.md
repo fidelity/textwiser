@@ -92,7 +92,7 @@ vecs = emb.fit_transform(documents)
 Examples can be found under the [notebooks](notebooks) folder.
  
 ## Installation
-TextWiser requires **Python 3.6+** and can be installed from PyPI using ``pip install textwiser``, using ``pip install textwiser[full]`` to install from PyPI with all optional dependencies, or by building from source by following the instructions
+TextWiser requires **Python 3.8+** and can be installed from PyPI using ``pip install textwiser``, using ``pip install textwiser[full]`` to install from PyPI with all optional dependencies, or by building from source by following the instructions
 in our [documentation](https://fidelity.github.io/textwiser/installation.html).
 
 ## Compound Embedding

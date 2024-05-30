@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Compound Embedding &mdash; TextWiser 1.5.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=e0a75244"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,11 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> TextWiser
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TextWiser
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,8 +73,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Compound Embedding</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Compound Embedding</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/compound.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,7 +85,7 @@
            <div itemprop="articleBody">
              
   <section id="compound-embedding">
-<span id="compound"></span><h1>Compound Embedding<a class="headerlink" href="#compound-embedding" title="Permalink to this headline"></a></h1>
+<span id="compound"></span><h1>Compound Embedding<a class="headerlink" href="#compound-embedding" title="Link to this heading"></a></h1>
 <p>A unique research contribution of TextWiser lies in its novel approach in creating embeddings from components, called the Compound Embedding. This method allows forming arbitrarily complex embeddings, thanks to a context-free grammar that defines a formal language for valid text featurization.</p>
 <p>The compound embedding is instantiated using a schema which applies two main production rules:</p>
 <ul class="simple">
@@ -87,7 +94,7 @@
 </ul>
 <p>More formally, the compound schemas are defined by the following <a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar">context-free grammar</a>:</p>
 <section id="a-context-free-grammar-of-embeddings">
-<span id="cfg"></span><h2>A Context-Free Grammar of Embeddings<a class="headerlink" href="#a-context-free-grammar-of-embeddings" title="Permalink to this headline"></a></h2>
+<span id="cfg"></span><h2>A Context-Free Grammar of Embeddings<a class="headerlink" href="#a-context-free-grammar-of-embeddings" title="Link to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>start → embed_like | merge
 
 embed_like → embed_option | &quot;[&quot; embed_option &quot;,&quot; dict &quot;]&quot;
@@ -162,7 +169,7 @@ Note that the <code class="docutils literal notranslate"><span class="pre">dict<
 A sample implementation of <code class="docutils literal notranslate"><span class="pre">dict</span></code> can be found <a class="reference external" href="https://github.com/lark-parser/lark/blob/master/docs/json_tutorial.md">here</a>.</p>
 </section>
 <section id="example-compound-schema">
-<h2>Example Compound Schema<a class="headerlink" href="#example-compound-schema" title="Permalink to this headline"></a></h2>
+<h2>Example Compound Schema<a class="headerlink" href="#example-compound-schema" title="Link to this heading"></a></h2>
 <p>Consider a compound embedding that achieves the following:
 * creates a <code class="docutils literal notranslate"><span class="pre">word2vec</span></code> embedding which is then <code class="docutils literal notranslate"><span class="pre">max</span></code> pooled to document level
 * creates a <code class="docutils literal notranslate"><span class="pre">flair</span></code> embedding  which is then <code class="docutils literal notranslate"><span class="pre">mean</span></code> pooled to document level
