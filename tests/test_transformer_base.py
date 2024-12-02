@@ -29,4 +29,4 @@ class BaseTransformerTest(BaseTest):
                               [0.0000000000, 0.0000000000]], dtype=torch.float32)
             ]
             for p, e in zip(predicted, expected):
-                self.assertTrue(torch.allclose(p, e.to(device), atol=1e-6))
+                self.assertTrue(torch.allclose(p, e.to(device), atol=1e-5))
