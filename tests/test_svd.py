@@ -13,9 +13,9 @@ class SVDTest(BaseTest):
         expected = torch.tensor([[0.8526761532, -0.5070778131],
                                  [0.9837458134, -0.0636523664],
                                  [0.7350711226, 0.6733918786]], dtype=torch.float32)
-        self._test_fit_transform(tw, expected)
+        self._test_fit_transform(tw, expected, svd=True)
         self._reset_seed()
-        self._test_fit_before_transform(tw, expected)
+        self._test_fit_before_transform(tw, expected, svd=True)
 
     def test_min_components(self):
         with self.assertRaises(ValueError):
