@@ -25,20 +25,24 @@ class BaseTest(unittest.TestCase):
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
 
-    def _test_fit_transform(self, tw_model, expected, atol=1e-6):
+    def _test_fit_transform(self, tw_model, expected, svd=False, atol=1e-6):
         predicted = tw_model.fit_transform(docs)
-        torch.set_printoptions(precision=10)
-        if not torch.allclose(predicted, expected.to(device), atol=atol):
-            print(predicted)
-            print(expected)
-        self.assertTrue(torch.allclose(predicted, expected.to(device), atol=atol))
+        # torch.set_printoptions(precision=10)
+        if svd:
+            self.assertTrue(torch.allclose(np.abs(predicted), np.abs(expected.to(device)), atol=atol))
+        else:
+            self.assertTrue(torch.allclose(predicted, expected.to(device), atol=atol))
 
-    def _test_fit_before_transform(self, tw_model, expected, atol=1e-6):
+    def _test_fit_before_transform(self, tw_model, expected, svd=False, atol=1e-6):
         tw_model.fit(docs)
         # torch.set_printoptions(precision=10)
         # print(tw_model.transform(docs))
-        self.assertTrue(torch.allclose(tw_model.transform(docs), expected.to(device), atol=atol))
-        self.assertTrue(torch.allclose(tw_model(docs), expected.to(device), atol=atol))
+        if svd:
+            self.assertTrue(torch.allclose(np.abs(tw_model.transform(docs)), np.abs(expected.to(device)), atol=atol))
+            self.assertTrue(torch.allclose(np.abs(tw_model(docs)), np.abs(expected.to(device)), atol=atol))
+        else:
+            self.assertTrue(torch.allclose(tw_model.transform(docs), expected.to(device), atol=atol))
+            self.assertTrue(torch.allclose(tw_model(docs), expected.to(device), atol=atol))
 
     def _get_test_path(self, *names):
         cwd = os.getcwd()
