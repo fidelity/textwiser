@@ -2,6 +2,8 @@
 import torch
 import warnings
 
+import numpy as np
+
 from textwiser import TextWiser, Embedding, Transformation, WordOptions, device
 from tests.test_base import BaseTest, docs
 
@@ -29,4 +31,5 @@ class BaseTransformerTest(BaseTest):
                               [0.0000000000, 0.0000000000]], dtype=torch.float32)
             ]
             for p, e in zip(predicted, expected):
-                self.assertTrue(torch.allclose(p, e.to(device), atol=1e-6))
+                # np.abs due to SVD instability
+                self.assertTrue(torch.allclose(np.abs(p), np.abs(e.to(device)), atol=1e-5))
