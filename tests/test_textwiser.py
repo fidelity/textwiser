@@ -63,7 +63,7 @@ class TextWiserTest(BaseTest):
             model = nn.Sequential(tw, nn.Linear(2, 1)).to(device)
             # Load the model from file
             file.seek(0)
-            model.load_state_dict(torch.load(file, map_location=device))
+            model.load_state_dict(torch.load(file, map_location=device, weights_only=False))
             # Do predictions with the loaded model
             predicted = model(docs)
             self.assertTrue(torch.allclose(predicted, expected, atol=1e-6))
